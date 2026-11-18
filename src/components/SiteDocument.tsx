@@ -32,6 +32,7 @@ const INLINE_CSS = `
 export default function SiteDocument({ lang, children }: { lang: string; children: ReactNode }) {
   return (
     <html lang={lang} className="no-js">
+      {/* eslint-disable-next-line @next/next/no-head-element -- App Router root layout */}
       <head>
         {STYLESHEETS.map((href) => (
           <link key={href} rel="stylesheet" href={href} />

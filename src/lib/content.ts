@@ -46,6 +46,26 @@ export async function getPage(lang: Lang, slug: string[] = []): Promise<PageData
   return mod.default;
 }
 
+const NOT_FOUND: Record<Lang, { base: string[]; title: string; text: string; home: string; homeLabel: string }> = {
+  cs: { base: ["cenik"], title: "Stránka nenalezena", text: "Omlouváme se, ale požadovaná stránka neexistuje.", home: "/", homeLabel: "Zpět na úvodní stránku" },
+  en: { base: ["price-list"], title: "Page not found", text: "Sorry, the page you are looking for does not exist.", home: "/en/home/", homeLabel: "Back to the homepage" },
+  de: { base: ["preisliste"], title: "Seite nicht gefunden", text: "Die gesuchte Seite existiert leider nicht.", home: "/de/hotel-magnolia/", homeLabel: "Zurück zur Startseite" },
+};
+
+/** 404 page: a simple subpage of the language with its content replaced by a message */
+export async function getNotFoundPage(lang: Lang): Promise<PageData | null> {
+  const nf = NOT_FOUND[lang];
+  const base = await getPage(lang, nf.base);
+  if (!base) return null;
+  const main = `<main id="main" class="site-main" role="main"><h1 class="entry-title">${nf.title}</h1><div class="entry-content"><p>${nf.text}</p><p><a href="${nf.home}">${nf.homeLabel}</a></p></div></main>`;
+  return {
+    ...base,
+    title: `${nf.title} - Hotel Magnolia`,
+    jsonLd: undefined,
+    html: base.html.replace(/<main[\s\S]*?<\/main>/, main),
+  };
+}
+
 function robots(value?: string): Metadata["robots"] {
   if (!value) return undefined;
   const v = value.toLowerCase();

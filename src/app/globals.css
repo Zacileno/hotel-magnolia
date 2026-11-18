@@ -7,9 +7,3 @@
 @import "@fontsource/open-sans/600.css";
 @import "@fontsource/open-sans/700.css";
 @import "@fontsource/spinnaker/400.css";
-
-/* contact form: state messages (WordPress Contact Form 7 used the same classes) */
-.wpcf7 form.sending .wpcf7-submit {
-  opacity: 0.6;
-  pointer-events: none;
-}
