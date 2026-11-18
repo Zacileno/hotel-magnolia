@@ -15,6 +15,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, rmSync
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as cheerio from "cheerio";
+import { fixHtml } from "./typography.mjs";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const SRC_ARCHIVE = join(ROOT, "_original/pages-archive");
@@ -300,7 +301,8 @@ for (const name of names) {
   body$("#black-studio-tinymce-8").replaceWith(CS_PAYMENTS_WIDGET);
   const { html, removedScripts, flags, blocked } = cleanBody(body$);
   const path = pathFromName(name);
-  pages.push({ name, data: { path, lang, bodyClass, ...meta, ...flags, html } });
+  // non-breaking spaces (Czech typography), see scripts/typography.mjs
+  pages.push({ name, data: { path, lang, bodyClass, ...meta, ...flags, html: fixHtml(html, lang) } });
   index.push({ path, name, lang });
   report.push(
     `OK ${lang} ${path}  (${file.includes("archive") ? "archive" : "live"}${LISTING.test(name) ? ", clean listing" : ""}; removed scripts: ${removedScripts.length})`

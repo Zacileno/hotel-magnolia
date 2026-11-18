@@ -67,6 +67,8 @@ function stickyMenu(): Cleanup {
       links().forEach((a) => (a.style.color = "#fff"));
       subLinks().forEach((a) => (a.style.color = "#222"));
     }
+    // lets the mobile CSS give the stuck menu bar a background (globals.css)
+    menu.classList.toggle("is-fixed", y > 100);
   };
   // the old script only reacted to scroll/resize, never on load — keep the CSS defaults until then
   const onScroll = () => update();

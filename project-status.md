@@ -71,6 +71,18 @@
 - Patička „Platby a ocenění" s odznakem KAYAK podle aktuálního živého webu ve všech jazycích (archivní kopie ho ještě neměly).
 - `/category/novinky/page/2/` (není v archivu) poskládána ze stejné šablony s 11. článkem „Hotel opět v provozu".
 
+## 5b. Úpravy nad rámec 1:1 (na pokyn Lenky)
+
+- 2026-11-18 **Pevné mezery** („můžeš na tom webu opravit pevné mezery?"): `scripts/typography.mjs`
+  (volá ho i `extract-content.mjs`) – jen viditelný text: CZ jednopísmenné předložky/spojky (v, k, s, z, o, u, a, i),
+  zkratky (č., tel., s. r. o.); všechny jazyky: číslo + jednotka (max. 3 číslice, ne letopočty), mezery v číslech
+  a telefonech, data (8. 4. 2021), mezera před pomlčkou. Ověřeno: kromě mezer se v HTML nic nezměnilo.
+- 2026-11-18 **Optimalizace pro telefony** („Optimalizuj pro telefony") – `src/app/globals.css`, jen do 1025 px:
+  přichycené menu má červený podklad (ikonka ☰ dřív visela bez pozadí přes obsah), mobilní menu ukazuje
+  podpoložky Fotogalerie/Ceník a vlajky CZ/EN/DE (dřív jen po najetí myší → na mobilu nedostupné),
+  formulářová pole 16 px (iPhone nepřibližuje), dlouhé adresy v textu se zalamují.
+  Kontrola 32 stránek ve 390 px: nic nepřetéká do strany.
+
 ## 6. Log práce
 
 - 2026-11-18: Analýza originálu, zjištěn hack (cloaking, spam). Stažení čistých kopií (Wayback + živé), extrakce
