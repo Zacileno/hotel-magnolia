@@ -30,7 +30,8 @@
 ## 3. Další krok
 
 1. ~~Porovnání všech stránek s originálem~~ ✅
-2. Založit projekt na Vercelu (účet Zacíleno), napojit na GitHub.
+2. ~~Založit projekt na Vercelu~~ ✅ 2026-11-18: projekt `hotel-magnolia` v týmu „pristupy-2441's projects" (Pro),
+   napojený na GitHub `Zacileno/hotel-magnolia`, produkční větev `main` (každý push = nové nasazení).
 3. Formulář: Lenka dodá / schválí příjemce (předpoklad `recepce@hotelmagnolia.cz`) a odesílací doménu v Resendu.
 4. Přepnutí domény hotelmagnolia.cz na Vercel – až po schválení Lenkou.
 
