@@ -16,10 +16,13 @@ export default function SitePage({ page }: { page: PageData }) {
       )}
       {/* the original <body> classes drive parts of the theme CSS (e.g. ".home .content-area") */}
       <div className={page.bodyClass} dangerouslySetInnerHTML={{ __html: page.html }} />
-      <SiteScripts lang={page.lang} />
       {page.plazaro && (
-        <Script src={`https://res.plazaro.com/online-reservation.js?lang=${page.plazaro}`} strategy="afterInteractive" />
+        // Plazaro reservation embed: like on the original page, a plain script right after the iframe.
+        // It must run before DOMContentLoaded (it hooks that event to resize the iframe), so no next/script.
+        // eslint-disable-next-line @next/next/no-sync-scripts
+        <script src={`https://res.plazaro.com/online-reservation.js?lang=${page.plazaro}`} />
       )}
+      <SiteScripts lang={page.lang} />
       {page.trustindex && <Script src="https://cdn.trustindex.io/loader.js" strategy="afterInteractive" />}
     </>
   );
