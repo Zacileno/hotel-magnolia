@@ -22,14 +22,9 @@ const SRC_ARCHIVE = join(ROOT, "_original/pages-archive");
 const SRC_LIVE = join(ROOT, "_original/pages");
 const OUT = join(ROOT, "src/content/pages");
 
-// Pages left over from another hotel (Hotel Ferdinand, Mariánské Lázně) — not part of
-// the Hotel Magnolia site, nothing links to them. Not migrated; redirected to "/".
-export const FOREIGN = [
-  /^(5-denni-pobyt|lecebny-lazensky|ozdravny-pobyt|prodlouzeny-vikend|relaxacni-|rodinna-dovolena|silvestrovske|vanocni-balicek|velikonocni-|vikendovy-wellness|wellness-pobyt)/,
-  /^galerie__hotel-ferdinand$/,
-  /^pokoje$/,
-  /^album/,
-];
+// Note: the wellness-package pages, /pokoje/, /album/ and the "Hotel Ferdinand" gallery come from
+// another hotel's site (Hotel Ferdinand, Mariánské Lázně). By the owner's decision (2026-11-18)
+// they are migrated as they are on the original site.
 
 // The real articles of the hotel (everything else in the WP post list is injected spam).
 const LEGIT_POSTS = [
@@ -183,7 +178,7 @@ function cleanBody($) {
   // "previous / next" links under a post or gallery: only to real articles / the hotel's galleries
   page.find(".nav-next, .nav-previous").each((_, el) => {
     const slug = ($(el).find("a").attr("href") || "").replace(/^\/|\/$/g, "");
-    const gallery = /^galerie\/[a-z0-9-]+$/.test(slug) && slug !== "galerie/hotel-ferdinand";
+    const gallery = /^(galerie\/[a-z0-9-]+|album(\/[a-z0-9-]+)?)$/.test(slug);
     if (!LEGIT_POSTS.includes(slug) && !gallery) $(el).remove();
   });
 
@@ -268,10 +263,6 @@ const pages = [];
 const report = [];
 
 for (const name of names) {
-  if (FOREIGN.some((re) => re.test(name))) {
-    report.push(`SKIP foreign  ${name}`);
-    continue;
-  }
   // newest clean copy wins: the live page when it is not hijacked, otherwise the archive
   const isClean = (html) => html.includes('id="masthead"') && !/mothercare|klevu/i.test(html);
   const candidates = [join(SRC_LIVE, name + ".html"), join(SRC_ARCHIVE, name + ".html")].filter(existsSync);
@@ -340,7 +331,7 @@ for (const name of names) {
       canonical: "https://hotelmagnolia.cz" + path,
       og: { ...first.data.og, "og:url": "https://hotelmagnolia.cz" + path },
       jsonLd: undefined,
-      html: $l.html(),
+      html: fixHtml($l.html(), "cs"),
     },
   });
   index.push({ path, name: "category__novinky__page__2", lang: "cs" });

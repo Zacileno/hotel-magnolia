@@ -1,24 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { Resend } from "resend";
+import { escapeHtml, rateLimited, sendMail } from "@/lib/mail";
 
-// "Vaše dotazy" form (the old Contact Form 7 form) → e-mail to the hotel reception.
-// Configuration (Vercel → Settings → Environment Variables, never in code):
-//   RESEND_API_KEY  Resend API key
-//   CONTACT_TO      where enquiries go (e.g. the reception address)
-//   CONTACT_FROM    verified sender in Resend, e.g. "Hotel Magnolia <web@domain>"
+// "Vaše dotazy" form (the old Contact Form 7 form) → e-mail to the hotel. Sending: src/lib/mail.ts
 
-type Body = {
-  name?: unknown;
-  email?: unknown;
-  tel?: unknown;
-  message?: unknown;
-  quizQuestion?: unknown;
-  quizAnswer?: unknown;
-  consents?: unknown;
-  website?: unknown;
-  page?: unknown;
-  lang?: unknown;
-};
+type Body = Record<string, unknown>;
 
 // the quiz questions used by the old form and their accepted answers
 const QUIZ: Record<string, string[]> = {
@@ -27,26 +12,11 @@ const QUIZ: Record<string, string[]> = {
 };
 
 const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
-const escapeHtml = (v: string) =>
-  v.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string);
-
-// simple per-instance rate limit: max 5 messages per IP in 15 minutes
-const WINDOW_MS = 15 * 60 * 1000;
-const hits = new Map<string, number[]>();
-function limited(ip: string): boolean {
-  const now = Date.now();
-  const list = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
-  list.push(now);
-  hits.set(ip, list);
-  if (hits.size > 5000) hits.clear();
-  return list.length > 5;
-}
-
 const bad = (field: string, error: string) => NextResponse.json({ field, error }, { status: 400 });
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (limited(ip)) return NextResponse.json({ error: "rate" }, { status: 429 });
+  if (rateLimited(ip)) return NextResponse.json({ error: "rate" }, { status: 429 });
 
   let body: Body;
   try {
@@ -75,14 +45,6 @@ export async function POST(req: NextRequest) {
   const answers = QUIZ[quizQuestion];
   if (!answers || !answers.includes(quizAnswer)) return bad("quiz-424", "quiz");
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO;
-  const from = process.env.CONTACT_FROM;
-  if (!apiKey || !to || !from) {
-    console.error("Contact form is not configured (RESEND_API_KEY / CONTACT_TO / CONTACT_FROM).");
-    return NextResponse.json({ error: "config" }, { status: 500 });
-  }
-
   const yes = (i: number) => (consents[i] ? "ano" : "ne");
   const html = `
     <h2>Nový dotaz z webu hotelmagnolia.cz</h2>
@@ -93,22 +55,7 @@ export async function POST(req: NextRequest) {
     <p style="color:#666;font-size:12px">Souhlas se zpracováním osobních údajů: ${yes(0)} ·
     Souhlas s obchodními podmínkami: ${yes(1)}<br>Odesláno ze stránky: ${escapeHtml(page)}</p>`;
 
-  try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
-      to: to.split(",").map((s) => s.trim()),
-      replyTo: email,
-      subject: `Hotel Magnolia – dotaz z webu: ${name}`,
-      html,
-    });
-    if (error) {
-      console.error("Resend error:", error);
-      return NextResponse.json({ error: "send" }, { status: 502 });
-    }
-  } catch (e) {
-    console.error("Resend exception:", e);
-    return NextResponse.json({ error: "send" }, { status: 502 });
-  }
+  const result = await sendMail({ subject: `Hotel Magnolia – dotaz z webu: ${name}`, html, replyTo: email });
+  if (result !== "sent") return NextResponse.json({ error: result }, { status: result === "not-configured" ? 500 : 502 });
   return NextResponse.json({ ok: true });
 }

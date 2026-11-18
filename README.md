@@ -26,17 +26,17 @@ npm run build      # production build (all pages are static)
 | `<head>`: original theme stylesheets, GTM `GTM-WLVZG7V` | `src/components/SiteDocument.tsx` |
 | Page body + reservation (Plazaro) and reviews (Trustindex) widgets | `src/components/SitePage.tsx` |
 | Theme behaviour (sticky menu, mobile menu, references slider, photo lightbox, contact form) | `src/components/SiteScripts.tsx` |
-| Contact form → e-mail via Resend | `src/app/api/kontakt/route.ts` |
+| Forms → e-mail (contact form, package order form); sending in one place | `src/app/api/kontakt`, `src/app/api/objednavka`, `src/lib/mail.ts` |
 | Images, theme CSS, fonts (same paths as on the old site) | `public/wp-content/…`, `public/wp-includes/…` |
-| Redirects (old pages of another hotel, `/en/`, `/de/`, …) | `next.config.ts` |
+| Redirects (`/album/`, `/en/`, `/de/`, `/obchodni-podminky/`) | `next.config.ts` |
 
 ## Environment variables (Vercel → Settings → Environment Variables)
 
 | Name | Purpose |
 |---|---|
-| `RESEND_API_KEY` | Resend API key for the contact form |
+| `RESEND_API_KEY` | key of the e-mail sending service (provider not decided yet, see project-status.md) |
 | `CONTACT_TO` | recipient(s) of form enquiries, comma separated |
-| `CONTACT_FROM` | sender verified in Resend, e.g. `Hotel Magnolia <web@example.cz>` |
+| `CONTACT_FROM` | sender address, e.g. `Hotel Magnolia <web@hotelmagnolia.cz>` |
 
 Never commit these values; `.env*` files are git-ignored.
 

@@ -21,6 +21,8 @@ const COMMON = [
   // 38 pokojů, 1 890 Kč, 30 %, 160 osob — a count (max. 3 digits, so not a year) + its unit/noun;
   // not before a one-letter word ("… 20 a …")
   [new RegExp(`(?<!\\d{3})(\\d)${SPACE}(?=[\\p{L}%€°]{2}|[%€°])`, "gu"), `$1${NBSP}`],
+  // any amount stays with its currency / percent sign: "6390 Kč", "17000 Kč"
+  [new RegExp(`(\\d)${SPACE}(?=(Kč|CZK|EUR|€|%)(?![\\p{L}]))`, "gu"), `$1${NBSP}`],
   // a dash never starts a line: "Hora Říp – skvělý tip"
   [new RegExp(`${SPACE}(?=[–—])`, "g"), NBSP],
 ];

@@ -370,10 +370,133 @@ function contactForms(lang: Lang): Cleanup {
   return () => forms.forEach((form) => form.removeEventListener("submit", onSubmit));
 }
 
+/* ---------- package order form on the wellness-package pages (simonet.js + its WP plugin) ---------- */
+function packageForms(): Cleanup {
+  const form = document.querySelector<HTMLFormElement>(".detailkurzu form");
+  const box = document.querySelector<HTMLElement>(".objform");
+  if (!form || !box) return () => {};
+  const offs: Cleanup[] = [];
+  const on = (el: Element | null, ev: string, fn: (e: Event) => void) => {
+    if (!el) return;
+    el.addEventListener(ev, fn);
+    offs.push(() => el.removeEventListener(ev, fn));
+  };
+  const field = (n: string) => form.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(`[name="${n}"]`);
+  const value = (n: string) => (field(n)?.value ?? "").trim();
+  const checked = (n: string) => !!form.querySelector<HTMLInputElement>(`[name="${n}"]:checked`);
+
+  // "CHCI REZERVOVAT" shows / hides the form
+  on(form.querySelector(".chci_koupit"), "click", () => {
+    const show = box.id === "formular_skryt";
+    box.id = show ? "formular_zobrazen" : "formular_skryt";
+    const hidden = form.querySelector<HTMLInputElement>(".formular_zobrazen");
+    if (hidden) hidden.value = box.id;
+  });
+
+  // private person / company
+  const osoba = form.querySelector<HTMLElement>(".osoba");
+  const firma = form.querySelector<HTMLElement>(".firma");
+  const choose = (company: boolean) => {
+    if (osoba) osoba.style.display = company ? "none" : "block";
+    if (firma) firma.style.display = company ? "block" : "none";
+    form.querySelectorAll<HTMLInputElement>('input[name="vybervolbu"]').forEach((r) => (r.checked = (r.value === "2") === company));
+  };
+  on(form.querySelector(".vyberverzi .chec1"), "click", () => choose(false));
+  on(form.querySelector(".vyberverzi .chec2"), "click", () => choose(true));
+
+  // message box in the theme's own style (.error_item)
+  const showBox = (html: string, ok: boolean) => {
+    box.querySelector(".error_item")?.remove();
+    const msg = document.createElement("div");
+    msg.className = "error_item";
+    if (ok) msg.style.cssText = "border-color:#46b450;color:#2e7d32";
+    msg.innerHTML = html;
+    box.prepend(msg);
+    window.scrollTo({ top: box.getBoundingClientRect().top + window.scrollY - 100, behavior: "smooth" });
+  };
+  const label = (n: string) => {
+    const el = field(n);
+    // the label right before the field (e.g. "Adresa" sits after "Jméno a příjmení" in the same column)
+    const prev = el?.previousElementSibling;
+    const text =
+      prev && (prev.tagName === "LABEL" || prev.classList.contains("sel_title"))
+        ? prev.textContent
+        : el?.closest(".obsah_block, .osoba_prava, .osoba_pata, .obsah_inline")?.querySelector("label, .sel_title")?.textContent;
+    return (text || n).replace("*", "").trim();
+  };
+
+  on(form, "submit", async (e) => {
+    e.preventDefault();
+    const company = form.querySelector<HTMLInputElement>('input[name="vybervolbu"][value="2"]')?.checked ?? false;
+    const required = company ? ["firma", "ic", "email2", "jmeno2", "adresa2", "mobil2"] : ["jmeno", "email", "mobil", "adresa"];
+    const missing = required.filter((n) => !value(n));
+    const emailName = company ? "email2" : "email";
+    if (value(emailName) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value(emailName))) missing.push(emailName);
+    if (!["10", "deset"].includes(value("ochrana").toLowerCase())) missing.push("ochrana");
+    if (!checked("souhlas")) missing.push("souhlas");
+    if (!checked("souhlas2")) missing.push("souhlas2");
+    const consentLabel: Record<string, string> = {
+      souhlas: "Souhlas s obchodními podmínkami",
+      souhlas2: "Souhlas se zpracováním osobních údajů",
+      ochrana: "Vypočtěte 5 + 5",
+    };
+    if (missing.length) {
+      showBox(
+        "Zkontrolujte prosím tyto údaje:<br>" +
+          missing.map((n) => `<span>${(consentLabel[n] || label(n)).replace(/[<>&]/g, "")}</span>`).join(""),
+        false
+      );
+      return;
+    }
+    const data: Record<string, unknown> = {};
+    new FormData(form).forEach((v, k) => (data[k] = typeof v === "string" ? v : ""));
+    data.souhlas = checked("souhlas");
+    data.souhlas2 = checked("souhlas2");
+    data.balicek = document.querySelector("h1.entry-title")?.textContent?.trim() ?? "";
+    data.cena = document.getElementById("konecna_cena")?.textContent?.trim() ?? "";
+    data.page = window.location.pathname;
+    const submit = form.querySelector<HTMLInputElement>('input[type="submit"]');
+    if (submit) submit.disabled = true;
+    try {
+      const res = await fetch("/api/objednavka/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        form.reset();
+        choose(false);
+        showBox("Děkujeme, Vaše objednávka byla odeslána. Brzy se Vám ozveme.", true);
+      } else if (res.status === 400) {
+        const body = (await res.json().catch(() => ({}))) as { field?: string };
+        showBox(`Zkontrolujte prosím tyto údaje:<br><span>${body.field ? consentLabel[body.field] || label(body.field) : ""}</span>`, false);
+      } else {
+        showBox("Objednávku se nepodařilo odeslat. Zkuste to prosím později nebo nás kontaktujte telefonicky.", false);
+      }
+    } catch {
+      showBox("Objednávku se nepodařilo odeslat. Zkuste to prosím později nebo nás kontaktujte telefonicky.", false);
+    } finally {
+      if (submit) submit.disabled = false;
+    }
+  });
+
+  // honeypot for bots
+  const hp = document.createElement("input");
+  hp.type = "text";
+  hp.name = "website";
+  hp.tabIndex = -1;
+  hp.autocomplete = "off";
+  hp.setAttribute("aria-hidden", "true");
+  hp.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;opacity:0";
+  form.append(hp);
+  offs.push(() => hp.remove());
+  return () => offs.forEach((o) => o());
+}
+
 export default function SiteScripts({ lang }: { lang: Lang }) {
   useEffect(() => {
     document.documentElement.classList.remove("no-js");
-    const cleanups = [stickyMenu(), mobileMenu(), referenceSlider(), lightbox(), contactForms(lang)];
+    const cleanups = [stickyMenu(), mobileMenu(), referenceSlider(), lightbox(), contactForms(lang), packageForms()];
     return () => cleanups.forEach((c) => c());
   }, [lang]);
   return null;

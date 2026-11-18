@@ -20,6 +20,16 @@
   "lang": "cs"
  },
  {
+  "path": "/5-denni-pobyt-pro-dva/",
+  "name": "5-denni-pobyt-pro-dva",
+  "lang": "cs"
+ },
+ {
+  "path": "/album/2017/",
+  "name": "album__2017",
+  "lang": "cs"
+ },
+ {
   "path": "/author/adminsim/",
   "name": "author__adminsim",
   "lang": "cs"
@@ -190,6 +200,11 @@
   "lang": "cs"
  },
  {
+  "path": "/galerie/hotel-ferdinand/",
+  "name": "galerie__hotel-ferdinand",
+  "lang": "cs"
+ },
+ {
   "path": "/galerie/jednoluzkove-pokoje/",
   "name": "galerie__jednoluzkove-pokoje",
   "lang": "cs"
@@ -250,8 +265,23 @@
   "lang": "cs"
  },
  {
+  "path": "/lecebny-lazensky-pobyt-pro-dva/",
+  "name": "lecebny-lazensky-pobyt-pro-dva",
+  "lang": "cs"
+ },
+ {
   "path": "/melnik-jeho-zamek-a-soutok-labe-s-vltavou/",
   "name": "melnik-jeho-zamek-a-soutok-labe-s-vltavou",
+  "lang": "cs"
+ },
+ {
+  "path": "/ozdravny-pobyt-pro-seniory-55-pro-jednu-osobu/",
+  "name": "ozdravny-pobyt-pro-seniory-55-pro-jednu-osobu",
+  "lang": "cs"
+ },
+ {
+  "path": "/ozdravny-pobyt-pro-seniory-pro-dva-2804/",
+  "name": "ozdravny-pobyt-pro-seniory-pro-dva-2804",
   "lang": "cs"
  },
  {
@@ -260,8 +290,38 @@
   "lang": "cs"
  },
  {
+  "path": "/pokoje/",
+  "name": "pokoje",
+  "lang": "cs"
+ },
+ {
+  "path": "/prodlouzeny-vikend-deluxe-pro-pary/",
+  "name": "prodlouzeny-vikend-deluxe-pro-pary",
+  "lang": "cs"
+ },
+ {
+  "path": "/prodlouzeny-vikend-pro-muze-extra/",
+  "name": "prodlouzeny-vikend-pro-muze-extra",
+  "lang": "cs"
+ },
+ {
+  "path": "/prodlouzeny-vikendovy-pobyt-pro-damy-extra/",
+  "name": "prodlouzeny-vikendovy-pobyt-pro-damy-extra",
+  "lang": "cs"
+ },
+ {
   "path": "/reference/",
   "name": "reference",
+  "lang": "cs"
+ },
+ {
+  "path": "/relaxacni-6-denni-pobyt-pro-dva/",
+  "name": "relaxacni-6-denni-pobyt-pro-dva",
+  "lang": "cs"
+ },
+ {
+  "path": "/relaxacni-pobyt-pro-dva-na-7-dni/",
+  "name": "relaxacni-pobyt-pro-dva-na-7-dni",
   "lang": "cs"
  },
  {
@@ -272,6 +332,16 @@
  {
   "path": "/rezervace/",
   "name": "rezervace",
+  "lang": "cs"
+ },
+ {
+  "path": "/rodinna-dovolena-na-7-dni/",
+  "name": "rodinna-dovolena-na-7-dni",
+  "lang": "cs"
+ },
+ {
+  "path": "/silvestrovske-lenoseni-pro-dva/",
+  "name": "silvestrovske-lenoseni-pro-dva",
   "lang": "cs"
  },
  {
@@ -375,8 +445,68 @@
   "lang": "cs"
  },
  {
+  "path": "/vanocni-balicek-pro-dva/",
+  "name": "vanocni-balicek-pro-dva",
+  "lang": "cs"
+ },
+ {
+  "path": "/velikonocni-balicek-pro-dva/",
+  "name": "velikonocni-balicek-pro-dva",
+  "lang": "cs"
+ },
+ {
+  "path": "/velikonocni-pohlazeni-pro-dva-na-5-dnu/",
+  "name": "velikonocni-pohlazeni-pro-dva-na-5-dnu",
+  "lang": "cs"
+ },
+ {
+  "path": "/velikonocni-relaxacni-pobyt-na-4-dny/",
+  "name": "velikonocni-relaxacni-pobyt-na-4-dny",
+  "lang": "cs"
+ },
+ {
+  "path": "/vikendovy-wellness-pobyt-na-3-dny-pro-dva/",
+  "name": "vikendovy-wellness-pobyt-na-3-dny-pro-dva",
+  "lang": "cs"
+ },
+ {
   "path": "/vop/",
   "name": "vop",
+  "lang": "cs"
+ },
+ {
+  "path": "/wellness-pobyt-na-3-dny-pro-dva-ve-vsedni-dny-nastup-ne-az-streda/",
+  "name": "wellness-pobyt-na-3-dny-pro-dva-ve-vsedni-dny-nastup-ne-az-streda",
+  "lang": "cs"
+ },
+ {
+  "path": "/wellness-pobyt-na-4-dny-pro-dva-nastup-kdykoli/",
+  "name": "wellness-pobyt-na-4-dny-pro-dva-nastup-kdykoli",
+  "lang": "cs"
+ },
+ {
+  "path": "/wellness-pobyt-pro-dva-na-4-dny/",
+  "name": "wellness-pobyt-pro-dva-na-4-dny",
+  "lang": "cs"
+ },
+ {
+  "path": "/wellness-pobyt-pro-dva-na-6-dni/",
+  "name": "wellness-pobyt-pro-dva-na-6-dni",
+  "lang": "cs"
+ },
+ {
+  "path": "/wellness-pobyt-pro-dva-na-8-dni/",
+  "name": "wellness-pobyt-pro-dva-na-8-dni",
+  "lang": "cs"
+ },
+ {
+  "path": "/wellness-pobyt-pro-dva-na-tri-dny/",
+  "name": "wellness-pobyt-pro-dva-na-tri-dny",
+  "lang": "cs"
+ },
+ {
+  "path": "/wellness-pobyt-pro-dva-o-vikendu/",
+  "name": "wellness-pobyt-pro-dva-o-vikendu",
   "lang": "cs"
  },
  {
