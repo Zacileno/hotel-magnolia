@@ -36,10 +36,26 @@
 
 ## 3. Další krok
 
-1. **Odesílání formulářů** – rozhodnout způsob (návrh: poštovní schránka hotelu u Websupportu přes SMTP, nebo vlastní
-   Resend účet hotelu s ověřením domény v DNS u Websupportu). Kód: vše v `src/lib/mail.ts` (teď napsáno pro Resend,
-   při volbě SMTP se mění jen tento soubor + proměnné prostředí). Příjemce: předpoklad `recepce@hotelmagnolia.cz`.
-   Přístupové údaje zadává do Vercelu Lenka (ne Claude).
+1. **Odesílání formulářů přes Resend** (rozhodnutí Lenky 2026-11-18). Kód: `src/lib/mail.ts`.
+   - ✅ Resend: doména `hotelmagnolia.cz` přidána v týmu **zacileno** (přihlášení přes GitHub Zacíleno), region
+     Irsko (eu-west-1), sledování otevření/kliknutí vypnuté, hlavní doména (ne poddoména).
+   - ✅ Vercel env: `CONTACT_TO = recepce@hotelmagnolia.cz`, `CONTACT_FROM = Hotel Magnolia <web@hotelmagnolia.cz>`.
+   - ⏳ **DNS u Websupportu** – vložit (majitel / správce domény); nic dalšího se v DNS nemění:
+
+     | Typ | Název | Hodnota |
+     |---|---|---|
+     | TXT | `resend._domainkey` | `p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCb0MwxoEvaTV7MbmbX8wRfTHj1A8OF2Qg+wTXpcVddzdvvDJDgDebbphkpgWCc8qZfqquUoMNKY3skOs0AoBUsJHEcE16N8ynDaqHUHO4gbLgPFWRlTkzcKQea/ZmJN4NNwzrRWfncKZIcn97bwS2RLwgy4MKYFASaQhLPG0AC7QIDAQAB` |
+     | CNAME | `rsend` | `rsend-euw1.forge.rmta.net` |
+     | CNAME | `send` | `send.forge.rmta.net` |
+     | TXT | `_dmarc` | `v=DMARC1; p=none;` (doporučeno) |
+
+     (Doména má wildcard `*.hotelmagnolia.cz` – nové záznamy platí jen pro tato jména. „Enable receiving" v Resendu
+     **nezapínat** – měnilo by příjem pošty.)
+   - ⏳ Po vložení DNS: v Resendu „I've added the records" → počkat na **Verified**.
+   - ⏳ **API klíč**: Resend → API keys → Create, oprávnění **Sending access**, doména jen `hotelmagnolia.cz`
+     (tým sdílí domény jiných klientů). Klíč vloží **Lenka** do Vercelu jako `RESEND_API_KEY`
+     (Production + Preview + Development) – Claude klíče nezadává.
+   - ⏳ Pak Redeploy na Vercelu a test obou formulářů (dotaz + objednávka pobytu) → musí dorazit na recepci.
 2. **Přepnutí domény** hotelmagnolia.cz na Vercel – až po schválení Lenkou. DNS domény je u **Websupportu**
    (NS `ns1/ns2.websupport.cz`, `ns3.websupport.eu`); pošta hotelu tamtéž (MX `mailin1/2.hotelmagnolia.cz`,
    SPF `spf.active24.com` + `_spf.m1.websupport.sk`) – při přepnutí měnit jen záznamy webu (A/CNAME), **ne MX/SPF**.
