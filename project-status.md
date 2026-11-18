@@ -35,10 +35,12 @@
     (zaokrouhlení metrik písma).
 - **Formuláře** („Vaše dotazy" i objednávka pobytu Ferdinanda): kontrola polí funguje (v prohlížeči i na serveru),
   odesílání přes Resend **nastaveno** (doména ověřená, klíč i adresy ve Vercelu, nové nasazení 2026-11-18).
-  Zkušební zpráva **neposlána** – na přání Lenky („neposílej zkušební zprávu"); první ověření = první skutečný dotaz
-  (případně Lenka pošle po přepnutí domény jeden dotaz sama).
-- Zbývá (Lenka): smazat starý nepoužitý klíč „hotel-magnolia" v Resendu; poslat jeden dotaz z formuláře
-  (ověření doručení); Search Console (sitemapa); rozhodnout o vypnutí starého WordPressu na hostingu Active24.
+  Na recepci se zkušební zpráva **neposílala** (přání Lenky). **Odesílání ověřeno 2026-11-18** jinak: dočasná
+  funkce `/api/mail-check` (commit 97bed99, odstraněna v 16a997c) poslala přes stejné nastavení (klíč, odesílatel
+  `web@hotelmagnolia.cz`, ověřená doména) e-mail na testovací adresu Resendu `delivered@resend.dev` → v Resendu
+  **Sent + Delivered**. Formulářová API po odstranění funkce dál odpovídají správně.
+- Zbývá (Lenka): smazat starý nepoužitý klíč „hotel-magnolia" v Resendu; (volitelně) poslat jeden dotaz z formuláře
+; Search Console (sitemapa); rozhodnout o vypnutí starého WordPressu na hostingu Active24.
 
 ## 3. Další krok
 
