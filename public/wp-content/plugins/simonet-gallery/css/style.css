@@ -1,0 +1,158 @@
+/**
+ *  CSS soubor pro "Ukázkový plugin"
+ **/
+ 
+ .oddil {padding:25px; border-bottom:1px solid #0085ba;border-right:1px solid #0085ba;border-top:1px solid #0085ba;border-left:1px solid #0085ba;margin-right:20px;}
+ .donatecz {margin-top:15px;}
+ .upozorneni {color:#f00;}
+ .nadpis_galerie {border-radius: 3px;padding:15px 35px;background:#ffa200;display:inline-block;margin-bottom:5px;color:#000;font-weight: 400;font-size: 1.7em; text-transform: uppercase;}
+ .nadpis_alba {border-radius: 3px;padding:15px 35px;background:#ffa200;display:inline-block;margin-bottom:5px;color:#000;font-weight: 400;font-size: 1.7em; text-transform: uppercase;}
+ .obsah_menu {margin-top:15px;border-bottom: 1px solid #0085ba;margin-right:15px;}
+ .obsah_menu .button_nav {padding:5px 10px; text-decoration:none;color:#000;display:inline-block;vertical-align:top;white-space: nowrap;
+ text-shadow: 0 -1px 1px #fff,1px 0 1px #fff,0 1px 1px #fff,-1px 0 1px #fff;}
+ .obsah_menu .button_nav:hover {background:#0085ba;color:#fff;text-shadow: 0 -1px 1px #006799,1px 0 1px #006799,0 1px 1px #006799,-1px 0 1px #006799;}
+ .obsah_menu .selected {background:#0085ba;color:#fff;text-shadow: 0 -1px 1px #006799,1px 0 1px #006799,0 1px 1px #006799,-1px 0 1px #006799;}
+ 
+ .operace .akce {margin-right:5px;display:inline-block;vertical-align:top;}
+ .operace .seznamjazyku {display:inline-block;vertical-align:top;margin-left:25px;}
+ .operace .oznacvse {margin: -4px 0px 0px 0px;}
+ .operace #oznacvse {margin:0px;}
+ .operace .oznac {margin:5px 5px 0 0;}
+ 
+ .obsah_galerie .polozka .drag_ico {background: rgba(0,150,250,0.5) url('../icons/ico-drag-and-drop.png') no-repeat center center;width:100%;height:100%;position:absolute;display:none;}
+ 
+ .obsah_galerie .chbox {margin:0 !important;}
+ .obsah_galerie {margin-top:20px;}
+ .obsah_galerie .polozka {display:block;vertical-align:top;border-bottom:1px solid #ddd;padding:5px 0 0 0;margin-right:15px;}
+ .obsah_galerie .polozka div {display:inline-block;vertical-align:top;margin: 0 5px 5px 0;}
+ .obsah_galerie .polozka label {line-height: 27px;vertical-align:top;font-size: 14px;}
+ .obsah_galerie .polozka .popis {width:500px;}
+ .obsah_galerie .polozka .rozlozeni {width:200px;}
+ .obsah_galerie .polozka .nazev  {width:500px;}
+ .obsah_galerie .polozka .pozice {width:70px;}
+ .obsah_galerie .polozka .obrazek {height:27px;width:auto;}
+ .obsah_galerie .polozka input[type=radio], .obsah .polozka input[type=checkbox] {margin-top:7px;}
+ .obsah_galerie .obsah {margin-top:20px;padding: 0;}
+ .obsah_galerie .nazev_gal {height:33px;}
+
+ 
+ .obsah_foto {margin-top:10px;}
+ .obsah_foto .polozka {background:#fff;display:inline-block;width:150px;margin:0 10px 10px 0;border:1px solid #ddd;padding:5px;position:relative;}
+ .obsah_foto .polozka:hover > .obrazek .drag_ico {display:block;}
+ .obsah_foto .polozka .obrazek {width:150px;height:auto;text-align:center;position:relative;}
+ .obsah_foto .polozka .nadpis {width:150px;display:block;margin:0;}
+ .obsah_foto .polozka img {max-width:150px;max-height:120px;vertical-align:middle;}
+ .obsah_foto .polozka .chvyber {line-height:30px;height:30px;padding:0;margin:0 auto;text-align:center;background:#eee;display:block;}
+ .obsah_foto .polozka .chvyber input[type=checkbox] {line-height:1;margin:0;}
+ .obsah_foto .polozka .jazyk2 {line-height:1;height:auto;width:auto;}
+ .obsah_foto .polozka .jazyk2 input[type=text] {width:150px;}
+ .obsah_foto .polozka .bez_jazyk {line-height:1;height:auto;width:auto;}
+ .obsah_foto .polozka .bez_jazyk input[type=text] {width:150px;}
+ 
+ .obsah_pridat_galerie {background:#fff;border:1px solid #006799;padding:0px 15px 0px 15px;margin:5px 15px 0 0;}
+ .obsah_pridat_galerie .polozka {display:inline-block;vertical-align:top;border: 1px solid #fff;margin:0 10px 10px 0;padding:5px;background:#eee;}
+ .obsah_pridat_galerie .polozka .nadpis {margin:2px 0 0 5px;padding:0;}
+ .obsah_pridat_galerie .polozka .bez_jazyk {margin:0;padding:0;}
+ .obsah_pridat_galerie .polozka .chvyber {margin:0;padding:0;}
+ 
+ .obsah_nastaveni {margin-top:20px;}
+ .obsah_nastaveni .size{width:50px;}
+ .obsah_nastaveni .nastaveni_popis{line-height:28px;}
+ .obsah_nastaveni .polozka {display: block; vertical-align: top; border-bottom: 1px solid #ddd; padding: 5px 0 0 0; }
+ .obsah_nastaveni .polozka div { display: inline-block; vertical-align: top; margin: 0 5px 5px 0; }
+ 
+/*----------------------------------------------------------------------------------------------------------*/
+  
+.simonet_alba h4 { font-weight: 300; color: #28a0a7;font-size: 17px; padding: 10px 0; margin: 0;}
+.simonet_alba .foto {width:18.5%;margin:0 20px 20px 0;display:inline-block;vertical-align:top;-webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease; transition: all 0.4s ease;}
+.simonet_alba .foto img {filter: grayscale(100%);}
+.simonet_alba .foto img:hover {filter: none;}
+.simonet_alba .foto a {display:inline-block;border:none;}
+.simonet_alba .foto:hover {-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_alba .novyradek {margin-right:0;}
+
+.simonet_galerie_out {margin:0;width: 100%;position:relative;overflow:hidden;}
+.simonet_galerie {margin:15px 0 15px 0;width: 100%;position:relative;text-align:center;}
+.simonet_galerie .foto { width: 48%;margin: 0px 4% 30px 0px; -webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;
+    vertical-align:top;background:none !important;display:inline-block;list-style:none !important;background:#fff;position:relative;padding: 0px !important;*display:inline;*zoom:1;}
+.simonet_galerie .foto:hover{-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_galerie .foto a {position:relative;display:block;border:none;overflow: hidden;line-height:0;}
+.simonet_galerie .foto img {position:relative;width:100%;}
+
+.simonet_galerie .foto2 { width: 48%;margin: 0px 4% 30px 0px; -webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;
+    vertical-align:top;background:none !important;display:inline-block;list-style:none !important;background:#fff;position:relative;padding: 0px !important;*display:inline;*zoom:1;}
+.simonet_galerie .foto2:hover{-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_galerie .foto2 a {position:relative;display:block;border:none;overflow: hidden;line-height:0;}
+.simonet_galerie .foto2 img {position:relative;width:100%;}
+
+.simonet_galerie .foto3 { width: 31.6%;margin: 0px 2.5% 30px 0px; -webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;
+    vertical-align:top;background:none !important;display:inline-block;list-style:none !important;background:#fff;position:relative;padding: 0px !important;*display:inline;*zoom:1;}
+.simonet_galerie .foto3:hover{-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_galerie .foto3 a {position:relative;display:block;border:none;overflow: hidden;line-height:0;}
+.simonet_galerie .foto3 img {position:relative;width:100%;}
+
+.simonet_galerie .foto4 { width: 23.5%;margin: 0px 2% 25px 0px; -webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;
+    vertical-align:top;background:none !important;display:inline-block;list-style:none !important;background:#fff;position:relative;padding: 0px !important;*display:inline;*zoom:1;}
+.simonet_galerie .foto4:hover{-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_galerie .foto4 a {position:relative;display:block;border:none;overflow: hidden;line-height:0;}
+.simonet_galerie .foto4 img {position:relative;width:100%;}
+
+.simonet_galerie .foto5 { width: 18.4%;margin: 0 15px 15px 0; -webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;
+    vertical-align:top;background:none !important;display:inline-block;list-style:none !important;position:relative;padding: 0px !important;*display:inline;*zoom:1;}
+.simonet_galerie .foto5:hover{-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_galerie .foto5 a {position:relative;display:block;border:none;overflow: hidden;line-height:0;}
+.simonet_galerie .foto5 img {position:relative;width:100%;border-radius:10px;}
+
+.simonet_galerie .foto6 { width: 15%;margin: 0px 2% 25px 0px; -webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;
+    vertical-align:top;background:none !important;display:inline-block;list-style:none !important;background:#fff;position:relative;padding: 0px !important;*display:inline;*zoom:1;}
+.simonet_galerie .foto6:hover{-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_galerie .foto6 a {position:relative;display:block;border:none;overflow: hidden;line-height:0;}
+.simonet_galerie .foto6 img {position:relative;width:100%;}
+
+.simonet_galerie .foto7 { width: 12.55%;margin: 0px 2% 25px 0px; -webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;
+    vertical-align:top;background:none !important;display:inline-block;list-style:none !important;background:#fff;position:relative;padding: 0px !important;*display:inline;*zoom:1;}
+.simonet_galerie .foto7:hover{-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_galerie .foto7 a {position:relative;display:block;border:none;overflow: hidden;line-height:0;}
+.simonet_galerie .foto7 img {position:relative;width:100%;}
+
+.simonet_galerie .foto8 { width: 10.7%;margin: 0px 2% 25px 0px; -webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;
+    vertical-align:top;background:none !important;display:inline-block;list-style:none !important;background:#fff;position:relative;padding: 0px !important;*display:inline;*zoom:1;}
+.simonet_galerie .foto8:hover{-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_galerie .foto8 a {position:relative;display:block;border:none;overflow: hidden;line-height:0;}
+.simonet_galerie .foto8 img {position:relative;width:100%;}
+
+.simonet_galerie .foto9 { width: 9.32%;margin: 0px 2% 25px 0px; -webkit-transition: all 0.4s ease;-o-transition: all 0.4s ease;transition: all 0.4s ease;
+    vertical-align:top;background:none !important;display:inline-block;list-style:none !important;background:#fff;position:relative;padding: 0px !important;*display:inline;*zoom:1;}
+.simonet_galerie .foto9:hover{-webkit-transform: scale(1.05);-ms-transform: scale(1.05);-o-transform: scale(1.05);transform: scale(1.05);}
+.simonet_galerie .foto9 a {position:relative;display:block;border:none;overflow: hidden;line-height:0;}
+.simonet_galerie .foto9 img {position:relative;width:100%;}
+
+.simonet_galerie .novyradek {margin-right: 0;}
+
+@media screen and (min-width: 1024px) {
+    .simonet_galerie .foto5 {margin: 0 15px 15px 0 !important;}
+    .simonet_galerie {width: 100% !important;}
+    }
+    
+@media screen and (max-width: 500px) {
+
+ .simonet_galerie .foto {width:auto;}
+ .simonet_galerie .foto2 {width:auto;}
+ .simonet_galerie .foto3 {width:auto;}
+ .simonet_galerie .foto4 {width:auto;}
+ .simonet_galerie .foto5 {width:auto;}
+ .simonet_galerie .foto6 {width:auto;}
+ .simonet_galerie .foto7 {width:auto;}
+ .simonet_galerie .foto8 {width:auto;}
+ .simonet_galerie .foto9 {width:auto;}
+ 
+ .simonet_galerie {text-align:center;}
+ .simonet_alba .foto{width:auto;margin: 0 0 20px 0;}
+ .simonet_alba .foto.novyradek {margin: 0 0 20px 0;}
+ 
+}
+
+@media screen and (max-width: 760px) {
+    
+}
+

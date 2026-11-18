@@ -1,26 +1,15 @@
-@import "tailwindcss";
+/* The site's look comes from the original theme stylesheets in public/wp-content/
+   (linked in src/components/SiteDocument.tsx). Only additions for the new site live here. */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* the original theme loaded Open Sans + Spinnaker from Google Fonts; same fonts, self-hosted */
+@import "@fontsource/open-sans/300.css";
+@import "@fontsource/open-sans/400.css";
+@import "@fontsource/open-sans/600.css";
+@import "@fontsource/open-sans/700.css";
+@import "@fontsource/spinnaker/400.css";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* contact form: state messages (WordPress Contact Form 7 used the same classes) */
+.wpcf7 form.sending .wpcf7-submit {
+  opacity: 0.6;
+  pointer-events: none;
 }

@@ -1,0 +1,63 @@
+/**
+ *  CSS soubor pro "Ukázkový plugin"
+ **/
+.admintable {position:relative;display: inline-block;margin: 0px 15px 10px 0px;}
+.admintable label{margin-bottom:10px;color:#aaa;}
+.admintable td img {width:200px;max-height:68px;}
+.admintable li{border: 1px solid #aaaaaa;padding: 5px 20px 0 60px;margin-bottom:20px !important;position:relative;}
+.admintable li input,.table_klienti li select{margin: 0 15px 0 5px;position:relative;}
+.admintable li .chvyber{position:absolute;top:0px;left:0px;height:100%;padding: 0 0 0 10px;background: #ddd;vertical-align:middle;}
+.admintable li span{  line-height: 27px; display: inherit; margin-left: 10px; color: #999;}
+.chbox{margin-top:38px !important;}
+.admintable li .skryt{display:none;}
+.tlpodrazene{float:left;margin:10px 10px 10px 0 !important; }
+.doleva{float:left;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #ddd;}
+.admintable .button-primary {width:auto;margin-left:5px;padding: 0px 10px ;line-height: 23px;height: auto; }
+.rolgal .maly{width:50px;}
+.rolgal .stredni{width:100px;}
+.rolgal .velky{width:180px;}
+.rolgal .velkyplus{width:220px;}
+.rolgal .velkytext{width:350px;min-height:99px;}
+.rolgal .center{text-align:center !important;}            
+#oznacvse{margin-left:5px;}
+#oznacvse2{margin-left:5px;}
+.ulozit{margin-top:10px !important;margin-left: 0 !important;}
+.smazat{margin-top:10px !important;}
+.nahledobrzku{width:140px;height:130px;overflow:hidden;margin-right:10px; margin-left: 10px;float: left;}
+.nahled {margin-right:10px; float: left;}
+.nahledobrzku img{width:100%;height:auto;}
+.pridatobrazek{display:inline-block;}
+.vseznamuobrazku .pridatobrazek{display:inline-block;margin:15px 0;}
+.pozadi{position:fixed;background:rgba(100,100,100,0.8) ;z-index:99999999;height:95%;}
+.seznamobrazku{width:92%;padding:3%;margin:1%;background:#fff;position:relative;height:83%;}
+.vseznamuobrazku{display:inline-block;overflow:scroll;height:75%;}
+.zavrit{position:absolute;top:20px;right:20px;}
+.obrazekzeseznamu{display: inline-block;float:left;margin:0px;width:150px;max-height:175px; padding: 20px 20px 40px 20px;border: 1px solid #eee;position:relative;}
+.obrazekzeseznamu img{max-width: 100%;max-height:150px;}
+.vybratobrazek{position:absolute;bottom:15px;}
+
+.rolgal .seznamjazyku{padding-left:50px;margin: 10px 10px 10px 0 !important;float: left;}
+.rolgal .seznamjazyku div{margin-left:10px !important;}
+.nastaveni .tllang {display: inline-block;
+  text-decoration: none;font-size: 13px;line-height: 26px;height: 28px;
+  margin: 0; padding: 0 10px 1px; cursor: pointer;  border-color: #ddd;
+  border-width: 1px; border-style: solid; -webkit-appearance: none; -webkit-border-radius: 3px;
+  border-radius: 3px; white-space: nowrap; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+.nastaveni .seznamjazyku .button {background: #999;color:#fff;  -webkit-box-shadow: inset 0 1px 0 #ddd,0 1px 0 rgba(0,0,0,.08);
+  box-shadow: inset 0 1px 0 #ddd,0 1px 0 rgba(0,0,0,.08); }
+/*----------------------------------------------------------------------------------------------------------*/
+
+
+.ul_reference2 .foto .infoto{position: relative;overflow: hidden;width:100%;line-height: 0;}
+.ul_reference2 .foto img{width:100%;height:auto;line-height: 0;}
+.ul_reference2{margin:25px 0 55px 0;width:32%;position:relative;display: inline-block;vertical-align:top;}
+.ul_1{margin-right:15px;}
+.ul_2{margin-right:15px;}
+.ul_reference2 li{list-style:none;margin: 0 0 20px 0;background:#ae0104;position:relative; overflow: hidden;}
+.ulreference2 li:lastchild{clear:both;}
+.rolgal .popis{color: #000;padding:15px 15px 15px 15px;line-height: 1.5;background:#eee;}     
+.rolgal .nazev{color: #fff;font-weight:normal;padding:0px 15px;margin:0;  font-size: 17px;}
+
+
+
+

@@ -1,0 +1,392 @@
+[
+ {
+  "path": "/2021/04/",
+  "name": "2021__04",
+  "lang": "cs"
+ },
+ {
+  "path": "/2021/06/",
+  "name": "2021__06",
+  "lang": "cs"
+ },
+ {
+  "path": "/2021/07/",
+  "name": "2021__07",
+  "lang": "cs"
+ },
+ {
+  "path": "/2023/01/",
+  "name": "2023__01",
+  "lang": "cs"
+ },
+ {
+  "path": "/author/adminsim/",
+  "name": "author__adminsim",
+  "lang": "cs"
+ },
+ {
+  "path": "/author/martin/",
+  "name": "author__martin",
+  "lang": "cs"
+ },
+ {
+  "path": "/category/novinky/",
+  "name": "category__novinky",
+  "lang": "cs"
+ },
+ {
+  "path": "/category/tipy-na-vylety-v-roudnici-a-okoli/",
+  "name": "category__tipy-na-vylety-v-roudnici-a-okoli",
+  "lang": "cs"
+ },
+ {
+  "path": "/cenik/",
+  "name": "cenik",
+  "lang": "cs"
+ },
+ {
+  "path": "/ceske-stredohori/",
+  "name": "ceske-stredohori",
+  "lang": "cs"
+ },
+ {
+  "path": "/cookies/",
+  "name": "cookies",
+  "lang": "cs"
+ },
+ {
+  "path": "/cykliste/",
+  "name": "cykliste",
+  "lang": "cs"
+ },
+ {
+  "path": "/de/cookies-3/",
+  "name": "de__cookies-3",
+  "lang": "de"
+ },
+ {
+  "path": "/de/fotogalerie-2/",
+  "name": "de__fotogalerie-2",
+  "lang": "de"
+ },
+ {
+  "path": "/de/hochzeiten/",
+  "name": "de__hochzeiten",
+  "lang": "de"
+ },
+ {
+  "path": "/de/hotel-magnolia/",
+  "name": "de__hotel-magnolia",
+  "lang": "de"
+ },
+ {
+  "path": "/de/informationen-zum-datenschutz/",
+  "name": "de__informationen-zum-datenschutz",
+  "lang": "de"
+ },
+ {
+  "path": "/de/konferenz/",
+  "name": "de__konferenz",
+  "lang": "de"
+ },
+ {
+  "path": "/de/kontakt-2/",
+  "name": "de__kontakt-2",
+  "lang": "de"
+ },
+ {
+  "path": "/de/preisliste/",
+  "name": "de__preisliste",
+  "lang": "de"
+ },
+ {
+  "path": "/de/referenz/",
+  "name": "de__referenz",
+  "lang": "de"
+ },
+ {
+  "path": "/de/reservierung-einer-unterkunft/",
+  "name": "de__reservierung-einer-unterkunft",
+  "lang": "de"
+ },
+ {
+  "path": "/de/restaurant-2/",
+  "name": "de__restaurant-2",
+  "lang": "de"
+ },
+ {
+  "path": "/de/unterkunft/",
+  "name": "de__unterkunft",
+  "lang": "de"
+ },
+ {
+  "path": "/en/accommodation/",
+  "name": "en__accommodation",
+  "lang": "en"
+ },
+ {
+  "path": "/en/accommodation-reservation/",
+  "name": "en__accommodation-reservation",
+  "lang": "en"
+ },
+ {
+  "path": "/en/conference/",
+  "name": "en__conference",
+  "lang": "en"
+ },
+ {
+  "path": "/en/contact/",
+  "name": "en__contact",
+  "lang": "en"
+ },
+ {
+  "path": "/en/cookies-2/",
+  "name": "en__cookies-2",
+  "lang": "en"
+ },
+ {
+  "path": "/en/general-terms/",
+  "name": "en__general-terms",
+  "lang": "en"
+ },
+ {
+  "path": "/en/home/",
+  "name": "en__home",
+  "lang": "en"
+ },
+ {
+  "path": "/en/information-on-data-protection/",
+  "name": "en__information-on-data-protection",
+  "lang": "en"
+ },
+ {
+  "path": "/en/photogallery/",
+  "name": "en__photogallery",
+  "lang": "en"
+ },
+ {
+  "path": "/en/price-list/",
+  "name": "en__price-list",
+  "lang": "en"
+ },
+ {
+  "path": "/en/restaurant/",
+  "name": "en__restaurant",
+  "lang": "en"
+ },
+ {
+  "path": "/en/reviews/",
+  "name": "en__reviews",
+  "lang": "en"
+ },
+ {
+  "path": "/en/weddings/",
+  "name": "en__weddings",
+  "lang": "en"
+ },
+ {
+  "path": "/fotogalerie/",
+  "name": "fotogalerie",
+  "lang": "cs"
+ },
+ {
+  "path": "/galerie/jednoluzkove-pokoje/",
+  "name": "galerie__jednoluzkove-pokoje",
+  "lang": "cs"
+ },
+ {
+  "path": "/galerie/konference/",
+  "name": "galerie__konference",
+  "lang": "cs"
+ },
+ {
+  "path": "/galerie/konference-3222/",
+  "name": "galerie__konference-3222",
+  "lang": "cs"
+ },
+ {
+  "path": "/galerie/restaurace-2878/",
+  "name": "galerie__restaurace-2878",
+  "lang": "cs"
+ },
+ {
+  "path": "/hazmburk-nedobytny-goticky-hrad/",
+  "name": "hazmburk-nedobytny-goticky-hrad",
+  "lang": "cs"
+ },
+ {
+  "path": "/",
+  "name": "home",
+  "lang": "cs"
+ },
+ {
+  "path": "/hora-rip-skvely-tip-na-celodenni-vylet/",
+  "name": "hora-rip-skvely-tip-na-celodenni-vylet",
+  "lang": "cs"
+ },
+ {
+  "path": "/hotel-v-provozu/",
+  "name": "hotel-v-provozu",
+  "lang": "cs"
+ },
+ {
+  "path": "/informace-o-ochrane-osobnich-udaju/",
+  "name": "informace-o-ochrane-osobnich-udaju",
+  "lang": "cs"
+ },
+ {
+  "path": "/kokorinsko-a-machuv-kraj-tipy-na-vylety/",
+  "name": "kokorinsko-a-machuv-kraj-tipy-na-vylety",
+  "lang": "cs"
+ },
+ {
+  "path": "/konference/",
+  "name": "konference",
+  "lang": "cs"
+ },
+ {
+  "path": "/kontakt/",
+  "name": "kontakt",
+  "lang": "cs"
+ },
+ {
+  "path": "/melnik-jeho-zamek-a-soutok-labe-s-vltavou/",
+  "name": "melnik-jeho-zamek-a-soutok-labe-s-vltavou",
+  "lang": "cs"
+ },
+ {
+  "path": "/ploskovice-kouzelny-zamek-a-zahrady/",
+  "name": "ploskovice-kouzelny-zamek-a-zahrady",
+  "lang": "cs"
+ },
+ {
+  "path": "/reference/",
+  "name": "reference",
+  "lang": "cs"
+ },
+ {
+  "path": "/restaurace/",
+  "name": "restaurace",
+  "lang": "cs"
+ },
+ {
+  "path": "/rezervace/",
+  "name": "rezervace",
+  "lang": "cs"
+ },
+ {
+  "path": "/svatby/",
+  "name": "svatby",
+  "lang": "cs"
+ },
+ {
+  "path": "/svatby-2023/",
+  "name": "svatby-2023",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/ceske-stredohori/",
+  "name": "tag__ceske-stredohori",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/hazmburk/",
+  "name": "tag__hazmburk",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/hora-rip/",
+  "name": "tag__hora-rip",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/hotel-magnolia/",
+  "name": "tag__hotel-magnolia",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/kam-na-vylet/",
+  "name": "tag__kam-na-vylet",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/kokorin/",
+  "name": "tag__kokorin",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/machovo-jezero/",
+  "name": "tag__machovo-jezero",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/melnik/",
+  "name": "tag__melnik",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/ploskovice/",
+  "name": "tag__ploskovice",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/ploskovicky-zamek/",
+  "name": "tag__ploskovicky-zamek",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/poklicky/",
+  "name": "tag__poklicky",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/roudnice-nad-labem/",
+  "name": "tag__roudnice-nad-labem",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/terezin/",
+  "name": "tag__terezin",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/vylet/",
+  "name": "tag__vylet",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/vylety/",
+  "name": "tag__vylety",
+  "lang": "cs"
+ },
+ {
+  "path": "/tag/zubrnice/",
+  "name": "tag__zubrnice",
+  "lang": "cs"
+ },
+ {
+  "path": "/terezin-vylet-ze-ktereho-mrazi-po-zadech/",
+  "name": "terezin-vylet-ze-ktereho-mrazi-po-zadech",
+  "lang": "cs"
+ },
+ {
+  "path": "/ubytovani/",
+  "name": "ubytovani",
+  "lang": "cs"
+ },
+ {
+  "path": "/vop/",
+  "name": "vop",
+  "lang": "cs"
+ },
+ {
+  "path": "/zubrnice-narodni-muzeum-v-prirode/",
+  "name": "zubrnice-narodni-muzeum-v-prirode",
+  "lang": "cs"
+ },
+ {
+  "path": "/category/novinky/page/2/",
+  "name": "category__novinky__page__2",
+  "lang": "cs"
+ }
+]

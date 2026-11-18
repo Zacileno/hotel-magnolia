@@ -1,0 +1,242 @@
+/**
+ *  CSS soubor pro "Ukázkový plugin"
+ **/
+
+h6 {font-size:50px;text-align:center;color:#e95d25;}
+.upravy_obsah {width:auto;display:block;position:relative;vertical-align: top;text-align: left;margin:0 0 0 0;}
+.upravy_obsah > li{list-style:none;vertical-align: top;}
+.upravy_obsah .inli {width:auto;display:block;position:relative;vertical-align: top; padding-right: 1px;}
+.upravy_obsah .sire2{width:50%;display:inline-block;position:relative;*display:inline;vertical-align:top;}
+.upravy_obsah .sire2b{width:50%;display:inline-block;position:relative;*display:inline;vertical-align:top;max-height:430px;overflow:hidden;}
+.upravy_obsah .sire2b .prvek_0,.upravy_obsah .sire2b .prvek_3,.upravy_obsah .sire2b .prvek_4,.upravy_obsah .sire2b .prvek_7,.upravy_obsah .sire2b .prvek_8{padding: 130px 80px 0 80px;
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;}
+.upravy_obsah .sire2b .prvek_1 p,.upravy_obsah .sire2b .prvek_2 p,.upravy_obsah .sire2b .prvek_5 p,.upravy_obsah .sire2b .prvek_6 p,.upravy_obsah .sire2b .prvek_9 p{}
+
+.page-template-page-edit .upravy_obsah .sire2b .prvek_1,.page-template-page-edit .upravy_obsah .sire2b .prvek_4,.page-template-page-edit .upravy_obsah .sire2b .prvek_5,.page-template-page-edit .upravy_obsah .sire2b .prvek_7,.page-template-page-edit .upravy_obsah .sire2b .prvek_8{padding: 130px 80px 0 80px;
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;}
+.page-template-page-edit .upravy_obsah .sire2b .prvek_3 {padding:0;}
+.page-template-page-edit #radek_0 .sirein{background-color: transparent;}
+.upravy_obsah .sire70_30{width:50%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire30_70{width:50%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire2b .obsah_u {text-align:left;}
+.upravy_obsah .sire2b p{text-align:left;}
+.upravy_obsah .sire3{width:33.33%;display:inline-block;position:relative;*display:inline;}W
+.upravy_obsah .sire3b{width:33.33%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire3b .obsah_u {text-align:left;}
+.upravy_obsah .sire3b p{text-align:left;}
+.upravy_obsah .sire4{width:25%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire4b{width:25%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire4b .obsah_u {text-align:left;}
+.upravy_obsah .sire4b p{text-align:left;}
+.upravy_obsah .sire5{width:18%;display:inline-block;position:relative;*display:inline;margin-right:2%;}
+.upravy_obsah .sire5b{width:20%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire5b .obsah_u {text-align:left;}
+.upravy_obsah .sire5b p{text-align:left;}
+.upravy_obsah .barva_2 .nazev_u {font-size:25px;font-weight:bold;margin-bottom:0px;color:#fff;text-align:left;padding:10px 20px;text-shadow: 0 1px 1px #8E0519;
+    background: #a1a1a1 url('../images/dot.jpg') no-repeat 20px center;
+    padding-left: 45px;
+    }
+.upravy_obsah .barva_1 .nazev_u {font-size:25px;font-weight:bold;margin-bottom:0px;color:#575755;text-align:left;padding:10px 20px;text-shadow: 0 1px 1px #eee;
+    background: #fff url('../images/dot.jpg') no-repeat 20px center;
+    padding-left: 45px;
+    }
+ 
+.upravy_obsah  .inli > a {text-decoration:none;}
+.upravy_obsah .obsah_u {padding:10px 0px;}
+.upravy_obsah .sire2b .obsah_u{padding:0;}
+.upravy_obsah .obsah_u p{margin-bottom:20px;}
+.upravy_obsah .obrazek_u img{width:100%;height:auto;}
+.upravy_obsah .barva_2 > li {text-align:left;padding:55px 0;color:#fff;background:#a1a1a1;}    
+.upravy_obsah .celasire .inli {width: 1200px;margin:0 auto;}
+.barva_1 h2,.barva_1 h3,.barva_1 h4,.barva_1 h5, .barva_1 h6 {color:#000000;text-align: left;}
+.barva_2 h2,.barva_2 h3,.barva_2 h4,.barva_2 h5, .barva_2 h6 {color:#fff;}
+
+.upravy_obsah p{text-align:justify;}
+.upravy_obsah p:last-child{margin-bottom:0px;}
+.upravy_obsah .sire70_30_1{width:70%;display:inline-block;position:relative;*display:inline;vertical-align:top;}
+.upravy_obsah .sire70_30_2{width:30%;display:inline-block;position:relative;*display:inline;vertical-align:top;}
+.upravy_obsah .sire70_30_1 .obsah_u {padding:10px 30px 10px 0px;}
+.upravy_obsah .sire30_70_1{width:30%;display:inline-block;position:relative;*display:inline;vertical-align:top;}
+.upravy_obsah .sire30_70_2{width:70%;display:inline-block;position:relative;*display:inline;vertical-align:top;}
+.upravy_obsah .sire30_70_1 .obsah_u {padding:10px 30px 10px 0px;}
+.upravy_obsah .barva_2 > .nazev14 {width: 1200px;margin:0 auto;padding: 0;background: #fff;}
+.upravy_obsah .barva_1 > .nazev14 {width: 1200px;margin:0 auto;padding: 0; }
+.upravy_obsah .nazev14 h2 {display:inline-block;vertical-align:top;font-weight:bold;}
+.upravy_obsah .barva_1 + .nextsession {clear:both;margin-bottom:0px;}
+
+.nextsession{clear:both;margin-bottom:0px;}
+
+.sirein{margin:0 auto 55px auto;list-style:none;padding:0;background-color: #f7f5f5;max-width: 1321px;}
+.sirein li .inli{padding:0 ;}
+
+.barva_1 {text-decoration:none;list-style:none;margin:0;padding:0;}
+.barva_2 {text-decoration:none;list-style:none;margin:0;background:#a1a1a1;padding:35px 0 35px 0;  }
+.barva_2 p, .barva_2 li {color:#fff;}
+.barva_2_2 {background: #fff;} 
+.barva_1_2 {background: #a1a1a1;}  
+.nazev14 .barva_2 {padding: 10px 20px 10px 40px;background: #a1a1a1 url('../images/dot.jpg') no-repeat 15px center;font-size:25px;font-weight:bold;margin-bottom:0px;color:#fff;text-align:left;}
+.nazev14 .barva_1 {padding: 10px 20px 10px 40px;background: #fff url('../images/dot.jpg') no-repeat 15px center;font-size:25px;font-weight:bold;margin-bottom:0px;color:#a1a1a1;text-align:left;}
+.lastbox_1 {background: #fff;height:45px;}
+.lastbox_2 {background: #a1a1a1;height:45px;}
+
+.upravastranky .form_upravy {display:block;margin-right:25px;}
+.upravastranky .form_upravy .admintable {width:auto;display:block;float:none;}
+.upravastranky .form_upravy .celasire {width:100%;display:block;float:none;}
+.upravastranky .form_upravy .sire0 {width:auto;display:block;float:none;}
+.upravastranky .form_upravy .sire2 {width:50%;display:inline-block;float:left;}
+.upravastranky .form_upravy .sire2 .velkyplus {width:100%;display:block;}
+.upravastranky .form_upravy .sire3 {width:33.3%;display:inline-block;float:left;}
+.upravastranky .form_upravy .sire3 .velkyplus {width:100%;display:block;}
+.upravastranky .form_upravy .sire4 {width:25%;display:inline-block;float:left;}
+.upravastranky .form_upravy .sire4 .velkyplus {width:100%;display:block;}
+.upravastranky .form_upravy .sire5 {width:20%;display:inline-block;float:left;}
+.upravastranky .form_upravy .sire5 .velkyplus {width:100%;display:block;}
+.upravastranky .sire70_30_1{width:70%;display:inline-block;float:left;}
+.upravastranky .sire70_30_2{width:30%;display:inline-block;float:left;}
+.upravastranky .sire30_70_1{width:30%;display:inline-block;float:left;}
+.upravastranky .sire30_70_2{width:70%;display:inline-block;float:left;}
+
+.upravastranky .typobsahu{background:#00a0d2;color:#fff;padding:10px;}
+.upravastranky .typobsahu span {font-size:17px;color:#fff;margin-right:10px;font-weight:normal;}
+.upravastranky .typobsahu input {margin-right:10px;}
+.upravastranky .typobsahu select { height: 28px; line-height: 28px;padding:0; }
+.upravastranky .typobsahu .chbox { margin-top: 0px !important;}
+.textovyobsah .tmce-active .quicktags-toolbarx {display:block;}
+
+.admintable .textovyobsah  .mce-menubar {display:block;}
+.admintable .textovyobsah  .mce-toolbar-grp {display:block;}
+
+.seznamjazykus{padding-left:50px;margin: 10px 10px 10px 0 !important;float: left;}
+.seznamjazykus div{margin-left:10px !important;}
+.Dupravastranky .seznamjazykus .tllangs {background: #00a0d2;color: #fff;}
+.Dupravastranky .seznamjazykus .button:hover {background: #00a0d2;color: #fff;}
+
+.form_upravy .admintable {position:relative;display: inline-block;margin: 0px 0 10px 0;}
+.form_upravy .admintable label{margin-bottom:10px;color:#aaa;}
+.form_upravy .admintable td img {width:200px;max-height:68px;}
+.form_upravy .admintable li{border: 0px solid #aaaaaa;padding: 0;margin:0 0 25px 0 !important;position:relative;display:inline-block;}
+.form_upravy .admintable li .inli{padding:0;border:1px solid #ddd;margin-bottom:25px;position:relative;display:block;}
+.form_upravy .admintable li input[type='text']{margin:0px;position:relative;}
+.form_upravy .admintable li .chbox {margin: 19px 5px 0 5px !important;}
+.form_upravy .admintable li select{margin: 0;position:relative; height: 28px;line-height: 28px; padding: 3px;}
+.table_klienti li select,.admintable select{margin-right:15px;position:relative;}
+.form_upravy .admintable li .chvyber{position:relative;padding: 10px;background: #ddd;float:left;}
+.form_upravy .admintable li span{  line-height: 27px; display: inherit; margin-left: 0px; color: #00a0d2;}
+.form_upravy .admintable li .skryt{display:none;}
+.tlpodrazene{float:left;margin:10px 10px 10px 0 !important; }
+.pridavani{clear:both;display:block;position:relative;border-bottom:1px solid #ddd;}
+.seznamstranek {max-width:500px;}
+.seznamstranek a{display:block;position:relative;padding:5px 10px;border:1px solid #ddd;margin-bottom:-1px;}
+.seznamstranek a:hover{color:#fff;background:#0073aa;}
+.seznamstranek a span{float:right;}
+.upravastranky h2 {font-size:17px;margin-top:20px;margin-bottom:25px;}
+.zpet{padding:5px 10px;border:1px solid #ddd;margin-top:10px;position:relative;display:inline-block;text-decoration:none;}
+.zpet:hover{color:#fff;background:#0073aa;}
+.upravastranky .nadpisuprav {font-size:17px;color:#0073aa;text-shadow: 0 1px 1px #fff;}
+.upravastranky .nadpisuprav span{color:#0073aa;font-weight:bold;font-size:23px;text-shadow: 0 1px 1px #fff;}
+.form_upravy .pridavani .doleva{padding-right:15px;border-bottom:0px solid #ddd;padding-bottom: 0px;}
+.form_upravy .pridavani .doleva span {display: block;font-size: 13px;padding:0 0 3px 1px;}
+.form_upravy input[type=text] {height: 28px;line-height: 28px;}
+.wp-core-ui .form_upravy .pridavani .button-primary {margin-top:22px;}
+.form_upravy .admintable .doleva{float:none;margin-bottom:0px;padding-bottom:0px;border-bottom:0px solid #ddd;margin:0 10px 10px 10px;}
+.form_upravy .admintable .doleva1{float:left;display:inline-block;margin:0 10px 0 10px;padding-bottom:0px;border-bottom:0px solid #ddd;}
+.form_upravy .admintable .doleva1 span {display:block;}
+.admintable .button-primary {width:auto;margin-left:5px;padding: 0px 10px ;line-height: 23px;height: auto; }
+.form_upravy .stredni{width:100px;}
+.form_upravy .velky{width:180px;}
+.form_upravy .velkyplus{width:300px;}
+.skryt{display:none;}
+.form_upravy .velkytext{width:350px;min-height:99px;}
+.form_upravy .center{text-align:center !important;}            
+#oznacvse{margin-left:5px;}
+#oznacvse2{margin-left:5px;}
+.ulozit{margin-top:10px !important;margin-left: 0 !important;}
+.smazat{margin-top:10px !important;}
+.nahledobrzku{width:140px;height:130px;overflow:hidden;margin-right:10px; margin-left: 10px;float: left;}
+.nahled {margin-right:10px; float: left;}
+.nahledobrzku img{width:100%;height:auto;}
+.pridatobrazek{display:inline-block;}
+.vseznamuobrazku .pridatobrazek{display:inline-block;margin:15px 0;}
+
+
+
+.pozadi{position:fixed;background:rgba(100,100,100,0.8) ;z-index:99999999;height:95%;}
+.seznamobrazku{width:92%;padding:3%;margin:1%;background:#fff;position:relative;height:83%;}
+.vseznamuobrazku{display:inline-block;overflow:scroll;height:75%;}
+.zavrit{position:absolute;top:20px;right:20px;}
+.obrazekzeseznamu{display: inline-block;float:left;margin:0px;width:150px;max-height:175px; padding: 20px 20px 40px 20px;border: 1px solid #eee;position:relative;}
+.obrazekzeseznamu img{max-width: 100%;max-height:150px;}
+.vybratobrazek{position:absolute;bottom:15px;}
+
+.seznamupravy{padding-left:50px;margin: 10px 10px 10px 0 !important;float: left;}
+.seznamupravy div{margin-left:10px !important;}
+.tllang {display: inline-block;
+  text-decoration: none;font-size: 13px;line-height: 26px;height: 28px;
+  margin: 0; padding: 0 10px 1px; cursor: pointer;  border-color: #ddd;
+  border-width: 1px; border-style: solid; -webkit-appearance: none; -webkit-border-radius: 3px;
+  border-radius: 3px; white-space: nowrap; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+.seznamupravy .button {background: #999;color:#fff;  -webkit-box-shadow: inset 0 1px 0 #ddd,0 1px 0 rgba(0,0,0,.08);
+  box-shadow: inset 0 1px 0 #ddd,0 1px 0 rgba(0,0,0,.08); }
+/*----------------------------------------------------------------------------------------------------------*/
+
+@media screen and (max-width: 1200px) {
+.upravy_obsah .sire2b{width:50%;display:inline-block;position:relative;*display:inline;max-height:300px;}
+
+.upravy_obsah .sire2b .prvek_0, .upravy_obsah .sire2b .prvek_3, .upravy_obsah .sire2b .prvek_4, .upravy_obsah .sire2b .prvek_7, .upravy_obsah .sire2b .prvek_8 {
+    padding: 50px 50px 0px 50px;
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+}
+
+}
+@media screen and (max-width: 960px) {
+.upravy_obsah .sire2{width:50%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire2b{width:50%;display:inline-block;position:relative;*display:inline;max-height:250px;}
+.upravy_obsah .sire3{width:50%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire3b{width:50%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire4{width:50%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire4b{width:50%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire5{width:50%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .sire5b{width:50%;display:inline-block;position:relative;*display:inline;}
+.upravy_obsah .obrazek_u img{width:100%;height:auto;}
+
+.upravy_obsah .sire2b .prvek_0, .upravy_obsah .sire2b .prvek_3, .upravy_obsah .sire2b .prvek_4, .upravy_obsah .sire2b .prvek_7, .upravy_obsah .sire2b .prvek_8 {
+    padding: 40px 40px 40px 40px;
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+}
+
+}
+
+@media screen and (max-width: 835px) {
+.upravy_obsah .sire2b{width:auto;display:block;max-height:none;}
+}
+
+@media screen and (max-width: 600px) {
+    .sirein{margin:0 auto 25px auto;}
+.upravy_obsah .sire2{width:auto;display:block;position:relative;}
+.upravy_obsah .sire2b{width:auto !important;display:block;position:relative;}
+.upravy_obsah .sire3{width:auto !important;display:block;position:relative;}
+.upravy_obsah .sire3b{width:auto !important;display:block;position:relative;}
+.upravy_obsah .sire4{width:auto !important;display:block;position:relative;}
+.upravy_obsah .sire4b{width:auto !important;display:block;position:relative;}
+.upravy_obsah .sire5{width:auto !important;display:block;position:relative;}
+.upravy_obsah .sire5b{width:auto !important;display:block;position:relative;}
+.upravy_obsah .inli {width:auto !important;display:block;position:relative;vertical-align: top; padding-right: 0px;text-align: left;}
+.upravy_obsah p {text-align: left;}
+.upravy_obsah .obsah_u p {text-align: left;}
+.upravy_obsah .obrazek_u img{width:100% !important;height:auto !important;}
+.upravy_obsah .obrazek_u {height:auto !important;}
+.upravy_obsah .sire2b .obsah_u {height:auto !important;}
+.upravy_obsah .obsah_u {height:auto !important;}
+.upravy_obsah{margin:15px 0 15px 0;}
+.upravy_obsah .sire2b .inli:first-child {padding: 20px;}
+h6 {
+    font-size: 30px;
+    text-align: center;
+    color: #e95d25;
+}
+.upravy_obsah .sire70_30_1 .obsah_u {padding: 10px 0px 10px 0px;}
+.barva_1 {padding: 5px 0 20px 0; margin: 0 0 5px 0;}
+  #primary .nazev14 .barva_1{font-size:20px;margin-top: 0px;}
+    #primary .nazev14 .barva_2{font-size:20px;margin-top: 0px; padding:10px 20px 10px 40px;;}
+    #primary .barva_2 {margin-bottom: 0px;padding: 35px 0 35px 0;}
+}

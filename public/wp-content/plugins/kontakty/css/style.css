@@ -1,0 +1,114 @@
+/*--ADMINISTRACE------------------------------------------------------------------------------------*/
+
+.obsah_firem {border-top:3px solid #0085ba;margin:0 35px 0 0;}
+.firma {}
+.firma div {margin-bottom:10px;}  
+.firma_obsah h4 {margin-bottom:0px;}
+.firma_obsah .ostatni {margin-bottom:-15px;display:block;width:auto;}
+.obsah_firem .firma .hidden {display:none;}
+.obsah_firem .firma .nahledobrzku {float:none;}
+.osoba_obsah .osoba_popis:before {margin: 0 auto 5px auto; content: ""; text-align:center; color: #f25f5c; display: block; width:32px; height:32px; background: url('../images/user_3.png') no-repeat top left;}
+.firma .osoba {display:inline-block;vertical-align:top;position:relative;}
+.firma label{position: relative;display: inline-block;margin:0 5px 0 5px;vertical-align: top;padding: 5px; width: 70px;}
+.firma input[type='text'],.jidelni_listek select {display:inline-block;vertical-align:top;position:relative;height:auto;}
+.firma_oznac {display:block;vertical-align:top;position:relative;}
+.firma_nadpis {display:inline-block;vertical-align:top;position:relative;}
+.firma_nadpis input {width:150px;}
+.firma_nazev {display:inline-block;vertical-align:top;position:relative;}
+.firma_nazev input {width:250px;}
+.firma_ulice {display:inline-block;vertical-align:top;position:relative;}
+.firma_ulice input {width:150px;}
+.firma_mesto {display:inline-block;vertical-align:top;position:relative;}
+.firma_mesto input{width:150px;}
+.firma_psc {display:inline-block;vertical-align:top;position:relative;}
+.firma_psc input{width:70px;}
+.firma_ico {display:inline-block;vertical-align:top;position:relative;}
+.firma_ico input{width:120px;}
+.firma_dic {display:inline-block;vertical-align:top;position:relative;}
+.firma_dic input{width:130px;}
+.firma_email {display:inline-block;vertical-align:top;position:relative;}
+.firma_email input{width:200px;}
+.firma_telefon {display:inline-block;vertical-align:top;position:relative;}
+.firma_telefon input{width:150px;}
+.firma_mapa iframe{display:block;position:relative;margin-bottom:0px;max-width:100%;}
+.firma_mapa textarea {width:100%;min-height:125px;}
+.firma_oteviraci_doba {display:inline-block;vertical-align:top;position:relative;}
+.firma_oteviraci_doba input{width:200px;}
+.firma_oteviraci_doba2 {display:inline-block;vertical-align:top;position:relative;}
+.firma_oteviraci_doba2 input{width:200px;}
+
+.firma_www {display:inline-block;vertical-align:top;position:relative;}
+.firma_www input{width:150px;}
+.kontakty .skryt{display:none;}
+
+.form_result {padding:15px;background:#f00;color:#fff;margin-bottom:20px;display:block;}
+
+/*--FRONT------------------------------------------------------------------------------------ */
+
+.firma_obsah {padding: 20px 0;margin: 0px auto 50px auto;border: 1px solid #e0e0e0;;background: #fafafa;text-align: center;width: 1024px;}
+.firma_obsah div{text-align: center; color: #777777; width: 32%; padding:0 2%; display:inline-block; vertical-align:top;}
+.firma_obsah div:before {font: 1.7em/1.5em "et-line";color: #f25f5c;display: block;margin-bottom: 15px;}
+.firma_obsah .adresa {}
+.firma_obsah .adresa:before {margin: 0 auto 10px auto; content: ""; text-align:center; color: #f25f5c; display: block; width:32px; height:32px; background: url('../images/placeholder_3.png') no-repeat top left;}
+.firma_obsah .telefon {}
+.firma_obsah .telefon:before {margin: 0 auto 10px auto; content: ""; text-align:center; color: #f25f5c; display: block; width:32px; height:32px; background: url('../images/phone-call_1.png') no-repeat top left;}
+.firma_obsah .email {}
+.firma_obsah .email:before {margin: 0 auto 10px auto; content: ""; text-align:center; color: #f25f5c; display: block; width:32px; height:32px; background: url('../images/opened-email-envelope.png') no-repeat top left;}
+
+.kontakty_footer div {font-size: 17px;margin: 0 0 10px 0}
+.kontakty_footers .adresa:before {
+    margin: 0 10px 0 0; content: ""; text-align:center; color: #f25f5c; display: inline-block; vertical-align:top; width:24px; height:24px; background: url('../images/placeholder_1.png') no-repeat top left;
+}
+.kontakty_footer .telefon:before {
+    margin: 0 10px 0 0; content: ""; text-align:center; color: #f25f5c; display: inline-block; vertical-align:top; width:24px; height:24px; background: url('../images/phone-call_3.png') no-repeat top left;
+}
+.kontakty_footer .email:before {
+    margin: 0 10px 0 0; content: ""; text-align:center; color: #f25f5c; display: inline-block; vertical-align:top; width:24px; height:24px; background: url('../images/email_2.png') no-repeat top left;
+}
+.kontakty_footer .icof:before {
+    content: "IČ:";font-family: 'Roboto', sans-serif,"Times New Roman",Times,serif; margin: 0 10px 0 0;height:24px;width:24px;display: inline-block;text-align:center;
+}
+.kontakty_footer .oteviraci_doba {margin-top:20px;}
+.kontakty_footer .oteviraci_doba:before {
+    content: "\e055";font-family: 'et-line'; margin: 0 10px 0 0;height:24px;width:24px;display: inline-block;text-align:center;
+}
+.kontakty_footer .oteviraci_doba2:before {
+    content: "";font-family: 'et-line'; margin: 0 10px 0 0;height:24px;width:24px;display: inline-block;
+}
+
+.vsechny_osoby { padding: 20px 0;
+    margin: 0px auto 50px auto;
+    border: 1px solid #e0e0e0;
+    background: #fafafa;
+    text-align: center;
+    width: 1024px;}
+.osoba_popis {display:inline-block;vertical-align:top;}
+.osoba_obsah .obrazek {display:inline-block;vertical-align:top;margin-right:25px;}
+.osoba_obsah {display:inline-block;vertical-align:top;margin: 0 25px;}
+.osoba_obsah .osoba {line-height: 1.5em;letter-spacing: 1px;}
+.osoba_obsah .osoba span {color: #333333;}
+
+.firma_mapa {display:block;vertical-align:top;}
+
+.odeslat_dotaz {display:block;vertical-align:top;position:relative;width:1024px;margin:35px auto 35px auto;}
+.contacts-block .contacts-title,.contacts-block .firma_obsah {display:block;vertical-align:top;position:relative;width:1024px;margin:0 auto 35px auto;;}
+.dotaz_left {display:inline-block;vertical-align:top;width:27%;}
+.dotaz_right {display:inline-block;vertical-align:top;width:73%;}
+.odeslat_dotaz_in {position:relative;}
+.odeslat_dotaz_in h2{margin:0 0 35px 0;}
+.odeslat_dotaz .odeslat_dotaz div{margin:10px 5px;}
+.odeslat_dotaz .odeslat_od{position:relative;display:inline-block;vertical-align:top;margin:0 5px;}
+.odeslat_dotaz .odeslat_peop{position:relative;display:block;vertical-align:top;}
+.odeslat_dotaz .odeslat_email{position:relative;display:inline-block;vertical-align:top;}
+.odeslat_dotaz textarea {width:100%;;margin:0; min-height: 235px;}
+.odeslat_dotaz .odeslat_out2 {cursor: pointer;text-align:left;margin:10px 10px 0 0;display:block;}
+.odeslat_dotaz .odeslat_out2 .button_book {border: 0;background: #f25f5c;text-align: center;color: #FFFFFF !important;
+    padding: 5px 20px;font-family: "Droid Serif", Arial, Helvetica, sans-serif;
+    white-space: normal;cursor: pointer;-webkit-transition: all 0.3s ease;-o-transition: all 0.3s ease;transition: all 0.3s ease;
+    -webkit-box-shadow: 0 0 0 5px #e8e8e8, 0 0 0 6px #CCCCCC;box-shadow: 0 0 0 5px #e8e8e8, 0 0 0 6px #CCCCCC;} 
+
+.odeslat_dotaz .odeslat_out2 .button_book:hover{    background: #af2b33;
+    -webkit-box-shadow: 0 0 0 5px #FFFFFF, 0 0 0 6px #CCCCCC;
+    box-shadow: 0 0 0 5px #FFFFFF, 0 0 0 6px #CCCCCC;}
+
+            
