@@ -28,3 +28,9 @@ Nebo ručně vrátit jen záznamy webu:
 Přepnutím domény se starý web **nesmaže** – zůstává na hostingu Active24 (služba `hotelmagnolia_cz`).
 Jeho soubory a databáze se do repozitáře záměrně neukládají: web je napadený a obsahuje kód útočníka.
 Vyčištěný obsah všech stránek je v `src/content/`, skripty pro opětovné stažení z archivu v `scripts/`.
+
+## `dns-hotelmagnolia.cz-2026-11-18-after-switch.zone`
+
+Stav DNS **po přepnutí** domény na Vercel (2026-11-18), ověřeno kontrolním součtem proti exportu z Active24:
+`hotelmagnolia.cz` A `216.150.1.1` + `216.150.16.1`, `www` CNAME `61ff461723cc4600.vercel-dns-016.com`,
+odstraněny AAAA/A starého hostingu pro `hotelmagnolia.cz` a `www`. Ostatní záznamy beze změny.

@@ -1,0 +1,33 @@
+; BIND db file for hotelmagnolia.cz
+hotelmagnolia.cz. 1D IN SOA ns1.websupport.cz. admin.websupport.cz. (
+1795035119; serial number
+7200; Refresh
+2048; Retry
+1048576; Expire
+2560; Min TTL
+)
+
+@ 3600 IN NS ns1.websupport.cz.
+@ 3600 IN NS ns2.websupport.cz.
+@ 3600 IN NS ns3.websupport.eu.
+mailin1 600 IN AAAA 2a00:4b40:aaaa:2101:0045:0013:0137:0114
+mailin2 600 IN AAAA 2a00:4b40:aaaa:2101:0045:0013:0137:0111
+@ 600 IN MX 10 mailin1.hotelmagnolia.cz.
+@ 600 IN MX 100 mailin2.hotelmagnolia.cz.
+@ 3600 IN TXT "MS=ms93024968"
+@ 600 IN TXT "facebook-domain-verification=rrpnk304lqpkbudorxz4eram0b9l34"
+ecomail._domainkey 600 IN TXT "v=DKIM1; k=rsa; h=sha256; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC0diuxLOeJJuRRu6v4Xnau70JIEEFGnkiiu6PK3i+1pGKyoLOyJFzk+Ah8zRoujJSzv95nxtDYERVpGxfgu+JXkV3ZDJucMkd/SxKIQ8pJ0Uk1MKKkUFnYgvOxW5Umq8VNpstZZfjhCRcYgb1Iw+oFabBbfShIM98yuaN7Q7KKcQIDAQAB"
+@ 3600 IN TXT "v=spf1 include:spf.active24.com include:_spf.m1.websupport.sk ~all"
+a24._domainkey 600 IN TXT "v=DKIM1; t=s; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDW6fYb2EdwHUMv94tFLrYlQF+XTt5N1KGmguewROebRvPHgrQTQZm3IzWwVyazo3e51hIkcCwVeH3txuS/Q/qu4elEEjFSUlQ3mCpZr0/we9Mzm3zkBIyjXT+K6JdGe7wMf0dJfENibrpN5+bWBm+LbZlc0iqcXDSmIfi8oHfrzwIDAQAB"
+@ 3600 IN A 216.150.1.1
+mailin1 600 IN A 45.13.137.109
+mailin2 600 IN A 45.13.137.103
+* 600 IN A 37.9.175.164
+* 600 IN AAAA 2a00:4b40:aaaa:2005:0000:0000:0000:0005
+mail._domainkey 600 IN TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzoY6jb5b7VH/0RYBcplcPMrLy5tX8Kp4wtkxbjqCLxFWn1KWdc51COFe+qMs0r/WwQmzNsmRlMxnekWfmEQk2Zj97kpT+FZj7mR2UFLFtRguOLH++jWOJkDZLCiSTyoW9dzD7jbVEio0MnF4JKqz4zaxz8Z/cQmFqTQs9AgJprxWRSAD6hk4HNnvALgiD6UNo" "Q7+/byfyLC0XnguePCe7XnXThf1demoeh6sWMdrA7NHEWHQHCsICP+W0hBzvMxQK9Yc47T5bdXsS4Tc6H2GWcKlXNbMzJpW7YhQ9I5sL49eNn3SVKIBOqsHbAXpd8cMXSF+NcHo0EedNQrqv1QsGwIDAQAB"
+resend._domainkey 600 IN TXT "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCb0MwxoEvaTV7MbmbX8wRfTHj1A8OF2Qg+wTXpcVddzdvvDJDgDebbphkpgWCc8qZfqquUoMNKY3skOs0AoBUsJHEcE16N8ynDaqHUHO4gbLgPFWRlTkzcKQea/ZmJN4NNwzrRWfncKZIcn97bwS2RLwgy4MKYFASaQhLPG0AC7QIDAQAB"
+_dmarc 600 IN TXT "v=DMARC1; p=none;"
+send 600 IN CNAME send.forge.rmta.net.
+rsend 600 IN CNAME rsend-euw1.forge.rmta.net.
+@ 600 IN A 216.150.16.1
+www 600 IN CNAME 61ff461723cc4600.vercel-dns-016.com.

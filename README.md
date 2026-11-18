@@ -4,7 +4,9 @@
 in Next.js, hosted on Vercel. The old WordPress site was hacked (casino/pharmacy spam, hijacked pages),
 so the content was taken from clean copies and every page was cleaned of spam.
 
+- Live: https://hotelmagnolia.cz/ (Vercel project `hotel-magnolia`; fallback https://hotel-magnolia.vercel.app)
 - Repo: https://github.com/Zacileno/hotel-magnolia (branch `main` → Vercel auto-deploy)
+- DNS backups (before/after the domain switch): [`backup/`](backup/)
 - Languages: Czech (`/…`), English (`/en/…`), German (`/de/…`) — same addresses as the old site
 - No CMS: content lives in the repo (`src/content/`)
 - Detailed project log and decisions: [`project-status.md`](project-status.md)

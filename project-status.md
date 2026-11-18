@@ -19,8 +19,10 @@
 
 ## 2. Aktuální stav
 
-- Web běží na **https://hotel-magnolia.vercel.app** (Vercel projekt `hotel-magnolia`, tým „pristupy-2441's projects",
-  auto-deploy z GitHubu `Zacileno/hotel-magnolia`, větev `main`). Doména hotelmagnolia.cz **zatím nepřepnuta**.
+- Web je **ostrý na https://hotelmagnolia.cz/** (od 2026-11-18; `www` a `http` trvale přesměrovávají na
+  `https://hotelmagnolia.cz/…`, certifikát Let's Encrypt spravuje Vercel). Vercel projekt `hotel-magnolia`, tým
+  „pristupy-2441's projects", auto-deploy z GitHubu `Zacileno/hotel-magnolia`, větev `main`.
+  Záložní adresa: https://hotel-magnolia.vercel.app.
 - 104 stránek (79 CZ vč. 26 stránek Ferdinanda, 13 EN, 12 DE) + API `/api/kontakt` a `/api/objednavka`. Build, lint,
   typecheck OK.
 - **Porovnání s originálem (2026-11-18, všech 103 stránek)** – měření polohy a velikosti všech prvků obsahu a patičky
@@ -35,7 +37,8 @@
   odesílání přes Resend **nastaveno** (doména ověřená, klíč i adresy ve Vercelu, nové nasazení 2026-11-18).
   Zkušební zpráva **neposlána** – na přání Lenky („neposílej zkušební zprávu"); první ověření = první skutečný dotaz
   (případně Lenka pošle po přepnutí domény jeden dotaz sama).
-- **Zbývá jen přepnutí domény** hotelmagnolia.cz na Vercel – dělá Lenka (postup v bodě 3.2).
+- Zbývá (Lenka): smazat starý nepoužitý klíč „hotel-magnolia" v Resendu; poslat jeden dotaz z formuláře
+  (ověření doručení); Search Console (sitemapa); rozhodnout o vypnutí starého WordPressu na hostingu Active24.
 
 ## 3. Další krok
 
@@ -62,23 +65,19 @@
      do Vercelu jako `RESEND_API_KEY` (Secret, Production). Starý nepoužitý klíč „hotel-magnolia" (hodnota se
      nezkopírovala) je potřeba v Resendu smazat – Lenka.
    - ✅ Nové nasazení po vložení klíče (2026-11-18). Test neprovedený (viz Aktuální stav).
-2. **Přepnutí domény** hotelmagnolia.cz na Vercel – **dělá Lenka** („nech jen to samotné nasazení na doménu").
-   1. Vercel → projekt `hotel-magnolia` → Settings → **Domains** → Add `hotelmagnolia.cz` (Vercel nabídne i `www`
-      s přesměrováním – zvolit hlavní `hotelmagnolia.cz`, `www` → přesměrovat na ni).
-   2. Vercel ukáže, jaké záznamy nastavit (obvykle **A** pro `hotelmagnolia.cz` a **CNAME** pro `www`) – použít
-      **přesně hodnoty z Vercelu**.
-   3. Active24 (admin.active24.cz → hotelmagnolia.cz → DNS → DNS nastavení):
-      - `hotelmagnolia.cz` **A** `37.9.175.164` → změnit na hodnotu z Vercelu,
-      - `hotelmagnolia.cz` **AAAA** `2a00:4b40:aaaa:2005::7` → **smazat** (jinak by část návštěvníků přes IPv6
-        dál chodila na starý napadený web),
-      - `www.hotelmagnolia.cz` **A** a **AAAA** → smazat a místo nich **CNAME** dle Vercelu,
-      - Active24 má u domény zapnuté „Active24 Web" (automaticky spravuje A/AAAA/CNAME) – může být potřeba ho vypnout,
-        aby záznamy nepřepsal zpět.
-      - **Neměnit**: MX, `mailin1/mailin2`, SPF a všechny TXT (DKIM Active24, Ecomail, Resend), `send`/`rsend`
-        CNAME, `_dmarc` – na nich závisí pošta, newslettery a formuláře.
-   4. Počkat (minuty až hodiny), ve Vercelu u domény „Valid Configuration" + certifikát HTTPS.
-   5. Po přepnutí: odeslat jeden dotaz z formuláře (ověření doručení na recepci), Search Console (sitemapa),
-      kontrola GTM. Starý napadený WordPress na hostingu Active24 zvážit vypnout/smazat (už nebude potřeba).
+2. ✅ **Přepnutí domény** na Vercel – 2026-11-18 provedla Claude na pokyn Lenky („tak to teda rovnou dej na ostrou
+   doménu").
+   - Záloha DNS **před** i **po** přepnutí: `backup/` (ověřeno kontrolním součtem proti exportu z Active24),
+     návod na návrat v `backup/README.md`.
+   - Vercel → Domains: `hotelmagnolia.cz` (hlavní, Production), `www.hotelmagnolia.cz` → 308 na `hotelmagnolia.cz`.
+   - Active24 DNS: `@` A `37.9.175.164` → `216.150.1.1` + nový A `216.150.16.1`; smazány `@` AAAA a `www` A/AAAA
+     (starý hosting); nový `www` CNAME `61ff461723cc4600.vercel-dns-016.com`. Ostatní záznamy (MX, mailin, SPF,
+     DKIM Active24/Ecomail/Resend, send/rsend, _dmarc, wildcard `*`) beze změny.
+   - Ověřeno: Vercel „Valid Configuration", HTTPS (Let's Encrypt, do 16. 2. 2027, obnovuje Vercel), www/http
+     přesměrování, GTM ve stránce, pošta (MX, SPF, server recepce) beze změny. Veřejné DNS cache mohly ještě
+     do hodiny ukazovat starý web (TTL 3600).
+   - Starý WordPress zůstává netknutý na hostingu Active24 (služba `hotelmagnolia_cz`), jen na něj doména
+     neukazuje. Doporučení: vypnout/smazat (napadený) – rozhodne Lenka/majitel.
 3. Konec projektu (2026-11-18, Lenka): lokální složka `Desktop\Claude\Hotel Magnolia` smazána, zůstal jen tento
    soubor. Pro další práci: `git clone https://github.com/Zacileno/hotel-magnolia.git` + `npm ci`.
 
