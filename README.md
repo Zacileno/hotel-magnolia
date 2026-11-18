@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hotel Magnolia – web
 
-## Getting Started
+1:1 rebuild of the original WordPress site **hotelmagnolia.cz** (Hotel Magnolia, Roudnice nad Labem)
+in Next.js, hosted on Vercel. The old WordPress site was hacked (casino/pharmacy spam, hijacked pages),
+so the content was taken from clean copies and every page was cleaned of spam.
 
-First, run the development server:
+- Repo: https://github.com/Zacileno/hotel-magnolia (branch `main` → Vercel auto-deploy)
+- Languages: Czech (`/…`), English (`/en/…`), German (`/de/…`) — same addresses as the old site
+- No CMS: content lives in the repo (`src/content/`)
+- Detailed project log and decisions: [`project-status.md`](project-status.md)
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build (all pages are static)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How it is built
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Part | Where |
+|---|---|
+| Page content (cleaned original HTML + head meta) | `src/content/pages/*.json`, list in `src/content/index.json` |
+| Routes: one catch-all per language, each with its own root layout (`<html lang>`) | `src/app/(cs)`, `src/app/(en)/en`, `src/app/(de)/de` |
+| `<head>`: original theme stylesheets, GTM `GTM-WLVZG7V` | `src/components/SiteDocument.tsx` |
+| Page body + reservation (Plazaro) and reviews (Trustindex) widgets | `src/components/SitePage.tsx` |
+| Theme behaviour (sticky menu, mobile menu, references slider, photo lightbox, contact form) | `src/components/SiteScripts.tsx` |
+| Contact form → e-mail via Resend | `src/app/api/kontakt/route.ts` |
+| Images, theme CSS, fonts (same paths as on the old site) | `public/wp-content/…`, `public/wp-includes/…` |
+| Redirects (old pages of another hotel, `/en/`, `/de/`, …) | `next.config.ts` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment variables (Vercel → Settings → Environment Variables)
 
-## Learn More
+| Name | Purpose |
+|---|---|
+| `RESEND_API_KEY` | Resend API key for the contact form |
+| `CONTACT_TO` | recipient(s) of form enquiries, comma separated |
+| `CONTACT_FROM` | sender verified in Resend, e.g. `Hotel Magnolia <web@example.cz>` |
 
-To learn more about Next.js, take a look at the following resources:
+Never commit these values; `.env*` files are git-ignored.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Editing content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Texts are in `src/content/pages/<page>.json` in the `html` field (original markup). Edit the text there,
+keep the HTML structure and classes so the original styles still apply.
 
-## Deploy on Vercel
+## Re-creating the content from the old site (only if ever needed)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The original pages are not in git (they contain the hacker's spam). To rebuild `src/content` from scratch:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# 1. clean copies from the Wayback Machine (the live site serves hijacked pages)
+node scripts/fetch-wayback.mjs _original/pages-archive scripts/original-urls.txt
+# 2. live copies (used only where clean; the script skips hijacked ones at extraction)
+node scripts/fetch-live.mjs _original/pages scripts/original-urls.txt
+# 3. extract + clean (whitelist of links, spam-word check — stops if anything suspicious is found)
+node scripts/extract-content.mjs
+# 4. download images / CSS / fonts into public/ (each file is validated)
+node scripts/fetch-assets.mjs
+```

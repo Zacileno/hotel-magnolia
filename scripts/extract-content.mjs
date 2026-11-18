@@ -179,10 +179,11 @@ function cleanBody($) {
     const href = $(el).find("a").attr("href") || "";
     if (!/^\/(2021\/0[467]|2023\/01)\/$/.test(href)) $(el).remove();
   });
-  // "previous / next article" links under a post: only to real articles
+  // "previous / next" links under a post or gallery: only to real articles / the hotel's galleries
   page.find(".nav-next, .nav-previous").each((_, el) => {
     const slug = ($(el).find("a").attr("href") || "").replace(/^\/|\/$/g, "");
-    if (!LEGIT_POSTS.includes(slug)) $(el).remove();
+    const gallery = /^galerie\/[a-z0-9-]+$/.test(slug) && slug !== "galerie/hotel-ferdinand";
+    if (!LEGIT_POSTS.includes(slug) && !gallery) $(el).remove();
   });
 
   // Whitelist of external hosts: remove everything else.
