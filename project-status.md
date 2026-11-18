@@ -40,7 +40,10 @@
    - ✅ Resend: doména `hotelmagnolia.cz` přidána v týmu **zacileno** (přihlášení přes GitHub Zacíleno), region
      Irsko (eu-west-1), sledování otevření/kliknutí vypnuté, hlavní doména (ne poddoména).
    - ✅ Vercel env: `CONTACT_TO = recepce@hotelmagnolia.cz`, `CONTACT_FROM = Hotel Magnolia <web@hotelmagnolia.cz>`.
-   - ⏳ **DNS u Websupportu** – vložit (majitel / správce domény); nic dalšího se v DNS nemění:
+   - ✅ **DNS** – 2026-11-18 vloženo (Claude, se svolením Lenky) v administraci **Active24**
+     (https://admin.active24.cz, účet Vyhlídka Prosek s.r.o. → hotelmagnolia.cz → DNS → DNS nastavení),
+     poznámka u záznamů „Resend - formulare webu"; původních 18 záznamů beze změny. Resend: doména **Verified**.
+     Pozn.: Active24 a Websupport jsou jedna firma; doména, hosting WordPressu i e-maily jsou v tomto účtu.
 
      | Typ | Název | Hodnota |
      |---|---|---|
@@ -51,7 +54,7 @@
 
      (Doména má wildcard `*.hotelmagnolia.cz` – nové záznamy platí jen pro tato jména. „Enable receiving" v Resendu
      **nezapínat** – měnilo by příjem pošty.)
-   - ⏳ Po vložení DNS: v Resendu „I've added the records" → počkat na **Verified**.
+   - ✅ Resend: doména ověřena (Verified).
    - ⏳ **API klíč**: Resend → API keys → Create, oprávnění **Sending access**, doména jen `hotelmagnolia.cz`
      (tým sdílí domény jiných klientů). Klíč vloží **Lenka** do Vercelu jako `RESEND_API_KEY`
      (Production + Preview + Development) – Claude klíče nezadává.
