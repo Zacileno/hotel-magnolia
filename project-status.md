@@ -31,8 +31,11 @@
     (Svatby, Svatby 2023), Trustindex a Plazaro se na skutečném webu samy přepočítají (ve srovnávací kopii vypnuté skripty),
     přehledy štítků/autorů/měsíců mají nadpis „Články" širší (šablona zužuje jen rubriky), odchylky < 1 px
     (zaokrouhlení metrik písma).
-- **Formulář** („Vaše dotazy" i objednávka pobytu Ferdinanda): kontrola polí funguje (v prohlížeči i na serveru),
-  **odesílání e-mailů zatím není nastavené** – Lenka: „Formulář vyřešíme ještě".
+- **Formuláře** („Vaše dotazy" i objednávka pobytu Ferdinanda): kontrola polí funguje (v prohlížeči i na serveru),
+  odesílání přes Resend **nastaveno** (doména ověřená, klíč i adresy ve Vercelu, nové nasazení 2026-11-18).
+  Zkušební zpráva **neposlána** – na přání Lenky („neposílej zkušební zprávu"); první ověření = první skutečný dotaz
+  (případně Lenka pošle po přepnutí domény jeden dotaz sama).
+- **Zbývá jen přepnutí domény** hotelmagnolia.cz na Vercel – dělá Lenka (postup v bodě 3.2).
 
 ## 3. Další krok
 
@@ -55,15 +58,29 @@
      (Doména má wildcard `*.hotelmagnolia.cz` – nové záznamy platí jen pro tato jména. „Enable receiving" v Resendu
      **nezapínat** – měnilo by příjem pošty.)
    - ✅ Resend: doména ověřena (Verified).
-   - ⏳ **API klíč**: Resend → API keys → Create, oprávnění **Sending access**, doména jen `hotelmagnolia.cz`
-     (tým sdílí domény jiných klientů). Klíč vloží **Lenka** do Vercelu jako `RESEND_API_KEY`
-     (Production + Preview + Development) – Claude klíče nezadává.
-   - ⏳ Pak Redeploy na Vercelu a test obou formulářů (dotaz + objednávka pobytu) → musí dorazit na recepci.
-2. **Přepnutí domény** hotelmagnolia.cz na Vercel – až po schválení Lenkou. DNS domény je u **Websupportu**
-   (NS `ns1/ns2.websupport.cz`, `ns3.websupport.eu`); pošta hotelu tamtéž (MX `mailin1/2.hotelmagnolia.cz`,
-   SPF `spf.active24.com` + `_spf.m1.websupport.sk`) – při přepnutí měnit jen záznamy webu (A/CNAME), **ne MX/SPF**.
-3. Po přepnutí: Search Console (sitemapa), kontrola GTM.
-4. Konec projektu: smazat lokální složku `Desktop\Claude\Hotel Magnolia` kromě tohoto souboru.
+   - ✅ **API klíč** „hotel-magnolia-web" (Resend, Sending access, jen doména `hotelmagnolia.cz`) vložila Lenka
+     do Vercelu jako `RESEND_API_KEY` (Secret, Production). Starý nepoužitý klíč „hotel-magnolia" (hodnota se
+     nezkopírovala) je potřeba v Resendu smazat – Lenka.
+   - ✅ Nové nasazení po vložení klíče (2026-11-18). Test neprovedený (viz Aktuální stav).
+2. **Přepnutí domény** hotelmagnolia.cz na Vercel – **dělá Lenka** („nech jen to samotné nasazení na doménu").
+   1. Vercel → projekt `hotel-magnolia` → Settings → **Domains** → Add `hotelmagnolia.cz` (Vercel nabídne i `www`
+      s přesměrováním – zvolit hlavní `hotelmagnolia.cz`, `www` → přesměrovat na ni).
+   2. Vercel ukáže, jaké záznamy nastavit (obvykle **A** pro `hotelmagnolia.cz` a **CNAME** pro `www`) – použít
+      **přesně hodnoty z Vercelu**.
+   3. Active24 (admin.active24.cz → hotelmagnolia.cz → DNS → DNS nastavení):
+      - `hotelmagnolia.cz` **A** `37.9.175.164` → změnit na hodnotu z Vercelu,
+      - `hotelmagnolia.cz` **AAAA** `2a00:4b40:aaaa:2005::7` → **smazat** (jinak by část návštěvníků přes IPv6
+        dál chodila na starý napadený web),
+      - `www.hotelmagnolia.cz` **A** a **AAAA** → smazat a místo nich **CNAME** dle Vercelu,
+      - Active24 má u domény zapnuté „Active24 Web" (automaticky spravuje A/AAAA/CNAME) – může být potřeba ho vypnout,
+        aby záznamy nepřepsal zpět.
+      - **Neměnit**: MX, `mailin1/mailin2`, SPF a všechny TXT (DKIM Active24, Ecomail, Resend), `send`/`rsend`
+        CNAME, `_dmarc` – na nich závisí pošta, newslettery a formuláře.
+   4. Počkat (minuty až hodiny), ve Vercelu u domény „Valid Configuration" + certifikát HTTPS.
+   5. Po přepnutí: odeslat jeden dotaz z formuláře (ověření doručení na recepci), Search Console (sitemapa),
+      kontrola GTM. Starý napadený WordPress na hostingu Active24 zvážit vypnout/smazat (už nebude potřeba).
+3. Konec projektu (2026-11-18, Lenka): lokální složka `Desktop\Claude\Hotel Magnolia` smazána, zůstal jen tento
+   soubor. Pro další práci: `git clone https://github.com/Zacileno/hotel-magnolia.git` + `npm ci`.
 
 ## 4. Jak byl obsah získán
 
