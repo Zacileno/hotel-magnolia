@@ -149,6 +149,15 @@
     automaticky před `npm run dev` / `npm run build` (není v gitu).
   - Cache hlavičky v `next.config.ts`: `/css/` 1 rok immutable, `/wp-content/uploads/` 1 rok, šablona/pluginy 30 dní.
   - Ověřeno: 10 stránek × 1536 px a 390 px – poloha, velikost a styly všech prvků totožné s ostrou verzí.
+  - Výsledek po nasazení: výkon 83 → 90, LCP 4,7 → 3,5 s.
+  - 2. kolo (2026-11-23): `bundle-css.mjs` vynechá pravidla, která na webu nikdy nemůžou platit (vyžadují třídu,
+    která se nevyskytuje v obsahu ani v kódu `src/`; pravidlo se odstraní jen celé, nikdy se neupravuje) →
+    291 KiB → 66 KiB (gzip 50 → 14 KiB). `BUNDLE_CSS_FULL=1` vytvoří plnou verzi pro srovnání.
+    Ověřeno: všech 104 stránek × 1536/390 px, všechny vypočtené styly (vč. ::before/::after) a polohy
+    57 518 prvků totožné s plnou verzí; navíc otevřené mobilní menu, chyby formulářů, lightbox. Kontrolní
+    test s úmyslnou změnou stylu rozdíl zachytil.
+  - Zvažováno a NEprovedeno (změnilo by vzhled): optimalizace loga SVG (odlišné pixely), WebP pro ostatní
+    fotky (jiná komprese). Pozn.: největší zbývající zátěž je měření (GTM, GA, Meta pixel ~ 550 KiB JS).
 
 ## 6. Log práce
 
