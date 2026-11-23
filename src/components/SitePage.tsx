@@ -1,13 +1,14 @@
 import Script from "next/script";
 import { preload } from "react-dom";
 import { HERO_SIZES, heroSrcSet, optimizeHero } from "@/lib/hero";
+import { addressMap } from "@/lib/map";
 import type { PageData } from "@/lib/content";
 import SiteScripts from "@/components/SiteScripts";
 
 /** One page of the site: the original page markup (cleaned) + the behaviour of the old theme */
 export default function SitePage({ page }: { page: PageData }) {
   // smaller photo versions for phones + early download of the top slider photo (PageSpeed / LCP)
-  const { html, hero } = optimizeHero(page.html);
+  const { html, hero } = optimizeHero(addressMap(page.html, page.lang));
   if (hero) preload(hero, { as: "image", imageSrcSet: heroSrcSet(hero), imageSizes: HERO_SIZES, fetchPriority: "high" });
   return (
     <>

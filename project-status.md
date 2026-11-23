@@ -156,6 +156,10 @@
     Ověřeno: všech 104 stránek × 1536/390 px, všechny vypočtené styly (vč. ::before/::after) a polohy
     57 518 prvků totožné s plnou verzí; navíc otevřené mobilní menu, chyby formulářů, lightbox. Kontrolní
     test s úmyslnou změnou stylu rozdíl zachytil.
+- 2026-11-23 **Mapa na kontaktech bez hodnocení** (Lenka: „V kontaktech je mapka google, kde jde vidět blbé
+  hodnocení“, zvolila variantu „mapa podle adresy“): `src/lib/map.ts` při vykreslení nahradí původní mapu
+  navázanou na firemní profil (Google v rohu ukazoval 3,9 ★) mapou podle adresy Karlovo náměstí 20 – stejné
+  místo i velikost, v rohu jen adresa. Popisky mapy v jazyce stránky (CZ/EN/DE). Obsah v `src/content` beze změny.
   - Zvažováno a NEprovedeno (změnilo by vzhled): optimalizace loga SVG (odlišné pixely), WebP pro ostatní
     fotky (jiná komprese). Pozn.: největší zbývající zátěž je měření (GTM, GA, Meta pixel ~ 550 KiB JS).
 
