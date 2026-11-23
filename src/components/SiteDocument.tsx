@@ -1,25 +1,13 @@
 import Script from "next/script";
 import type { ReactNode } from "react";
 import "@/app/globals.css";
+import siteCss from "@/generated/site-css.json";
 
 const GTM_ID = "GTM-WLVZG7V";
 
-// Same stylesheets, same order as the original WordPress theme
-const STYLESHEETS = [
-  "/wp-includes/css/dist/block-library/style.css",
-  "/wp-content/plugins/contact-form-7/includes/css/styles.css",
-  "/wp-content/plugins/wp-datepicker/css/front-styles.css",
-  "/wp-content/plugins/wp-datepicker/css/jquery-ui.css",
-  "/wp-content/themes/simonet/style.css",
-  "/wp-content/plugins/easy-fancybox/fancybox/1.5.4/jquery.fancybox.min.css",
-  "/wp-content/plugins/team-members/inc/css/tmm_style.css",
-  "/wp-content/plugins/nastaveni/css/style.css",
-  "/wp-content/plugins/ml-slider/assets/sliders/flexslider/flexslider.css",
-  "/wp-content/plugins/ml-slider/assets/metaslider/public.css",
-  "/wp-content/plugins/upravy/css/style.css",
-  "/wp-content/plugins/reference2/css/style.css",
-  "/wp-content/plugins/kontakty/css/style.css",
-];
+// The 13 original WordPress stylesheets (same files, same order) joined into one cacheable file by
+// scripts/bundle-css.mjs, which runs before every dev/build — one request instead of 13 (PageSpeed).
+const SITE_CSS = siteCss.href;
 
 // small inline styles the original pages carried in <head>
 const INLINE_CSS = `
@@ -34,9 +22,7 @@ export default function SiteDocument({ lang, children }: { lang: string; childre
     <html lang={lang} className="no-js">
       {/* eslint-disable-next-line @next/next/no-head-element -- App Router root layout */}
       <head>
-        {STYLESHEETS.map((href) => (
-          <link key={href} rel="stylesheet" href={href} />
-        ))}
+        <link rel="stylesheet" href={SITE_CSS} />
         <style dangerouslySetInnerHTML={{ __html: INLINE_CSS }} />
         <Script id="gtm" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}

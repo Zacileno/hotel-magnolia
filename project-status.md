@@ -138,6 +138,17 @@
   podpoložky Fotogalerie/Ceník a vlajky CZ/EN/DE (dřív jen po najetí myší → na mobilu nedostupné),
   formulářová pole 16 px (iPhone nepřibližuje), dlouhé adresy v textu se zalamují.
   Kontrola 32 stránek ve 390 px: nic nepřetéká do strany.
+- 2026-11-23 **Rychlost / Core Web Vitals** („Web neprochází core web vitals“). PageSpeed (mobil, laboratorně):
+  LCP 4,7 s, výkon 83. Pozn.: horní část PageSpeedu = data skutečných návštěvníků za 28 dní, do ~poloviny
+  prosince v nich je ještě starý WordPress (TTFB 1,4 s; nový web ~0,3 s).
+  - Úvodní foto slideru (LCP): `scripts/optimize-hero.mjs` vyrobí WebP verze 480–1920 px (soubory `*-NNNw.webp`
+    vedle originálu, v gitu); `src/lib/hero.ts` doplní při vykreslení `srcset`/`sizes`, první fotce
+    `fetchpriority="high"` + preload. Originální JPG zůstává jako `src`.
+  - 13 původních CSS souborů spojeno do jednoho `scripts/bundle-css.mjs` (stejné soubory, stejné pořadí,
+    obsah beze změny, jen relativní `url()` převedeny na absolutní) → `/css/site.<hash>.css`. Generuje se
+    automaticky před `npm run dev` / `npm run build` (není v gitu).
+  - Cache hlavičky v `next.config.ts`: `/css/` 1 rok immutable, `/wp-content/uploads/` 1 rok, šablona/pluginy 30 dní.
+  - Ověřeno: 10 stránek × 1536 px a 390 px – poloha, velikost a styly všech prvků totožné s ostrou verzí.
 
 ## 6. Log práce
 
