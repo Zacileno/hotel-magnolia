@@ -1,15 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { QUIZ_ANSWERS } from "@/lib/forms";
 import { escapeHtml, rateLimited, sendMail } from "@/lib/mail";
 
 // "Vaše dotazy" form (the old Contact Form 7 form) → e-mail to the hotel. Sending: src/lib/mail.ts
 
 type Body = Record<string, unknown>;
-
-// the quiz questions used by the old form and their accepted answers
-const QUIZ: Record<string, string[]> = {
-  "vypočtěte jedna+dva?": ["3", "tři", "tri"],
-  "vypočtěte pět+pět?": ["10", "deset"],
-};
 
 const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 const bad = (field: string, error: string) => NextResponse.json({ field, error }, { status: 400 });
@@ -42,7 +37,7 @@ export async function POST(req: NextRequest) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return bad("your-email", "email");
   if (!tel) return bad("tel", "required");
   if (!/^[+0-9 ()\-./]{6,25}$/.test(tel)) return bad("tel", "tel");
-  const answers = QUIZ[quizQuestion];
+  const answers = QUIZ_ANSWERS[quizQuestion];
   if (!answers || !answers.includes(quizAnswer)) return bad("quiz-424", "quiz");
 
   const yes = (i: number) => (consents[i] ? "ano" : "ne");

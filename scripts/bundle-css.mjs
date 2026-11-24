@@ -106,7 +106,9 @@ const parts = STYLESHEETS.map((href) => {
   return `/* ${href} */\n${absolutizeUrls(css, href)}\n`;
 });
 const joined = `@charset "UTF-8";\n` + parts.join("");
-const bundle = process.env.BUNDLE_CSS_FULL === "1" ? joined : pruneUnused(joined);
+// our own polish on top of the original theme (redesign 2026-11) – always last, never pruned
+const polish = `/* src/styles/polish.css */\n${readFileSync(path.join(ROOT, "src", "styles", "polish.css"), "utf8")}\n`;
+const bundle = (process.env.BUNDLE_CSS_FULL === "1" ? joined : pruneUnused(joined)) + polish;
 const hash = createHash("sha256").update(bundle).digest("hex").slice(0, 10);
 
 const outDir = path.join(ROOT, "public", "css");

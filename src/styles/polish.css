@@ -1,0 +1,1176 @@
+/*
+ * Redesign "polish" (2026-11, Lenka: "trochu redesignuj moderně, hlavně formuláře … jen to malinko nalešti").
+ * Only adds on top of the original theme — the page markup is unchanged. Appended to the end of the joined
+ * stylesheet by scripts/bundle-css.mjs (after the unused-rule pruning). Every selector starts with
+ * "html body" so it wins over the original rules, including the plugin stylesheets the pages load at the
+ * end of <body> (nastaveni, kontakty, …).
+ */
+
+/* ---------- shared look ---------- */
+:root {
+  --hm-accent: #f25f5c;
+  --hm-accent-dark: #e0443f;
+  --hm-accent-soft: rgba(242, 95, 92, 0.14);
+  --hm-text: #3d3d3d;
+  --hm-muted: #6f6f6f;
+  --hm-line: #e6dfdf;
+  --hm-field: #fcfafa;
+  --hm-card-shadow: 0 12px 40px rgba(40, 20, 20, 0.07), 0 2px 6px rgba(40, 20, 20, 0.04);
+  --hm-radius: 16px;
+  /* redesign: elegant hotel look */
+  --hm-ink: #2b2422;
+  --hm-body: #5b5350;
+  --hm-sand: #f8f3ef;
+  --hm-sand-2: #f2ebe5;
+  --hm-night: #221c1b;
+  --hm-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --hm-sans: "Manrope Variable", "Open Sans", system-ui, sans-serif;
+}
+
+/* =====================================================================
+   SITE-WIDE REDESIGN (Lenka 2026-11-23: "celý web, střídmě, elegantní hotelový styl")
+   ===================================================================== */
+
+/* ---------- typography ---------- */
+html body {
+  color: var(--hm-body);
+  font-family: var(--hm-sans);
+}
+html body p,
+html body .entry-content li,
+html body .entry-content td {
+  font-family: var(--hm-sans);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--hm-body);
+}
+/* the theme's reset gives EVERY element (strong, span, a, div, li …) Open Sans 15 px, so bold words
+   inside a paragraph were smaller and in another font → everything uses the site font, and inline
+   bits inside text take the size of the text around them */
+html body :where(div, span, a, li, td, th, label, strong, b, em, i, small, address, blockquote, dd, dt) {
+  font-family: var(--hm-sans);
+}
+html body :is(h1, h2, h3, h5, h6) :where(span, a, strong, b, em, i, small, font) {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+/* e.g. Konference: <h3><strong>Rozměry…</strong></h3> – the bold text inside is the heading itself */
+html body :is(h1, h2, h3) :where(span, strong, b, em, i, font),
+html body .entry-content :is(h1, h2, h3) strong {
+  color: inherit;
+  font-weight: inherit;
+}
+html body :is(p, li, td) :where(strong, b, em, i, span, a, small, font) {
+  font-size: inherit;
+  line-height: inherit;
+}
+html body p a {
+  font-size: inherit;
+  color: var(--hm-accent);
+  text-underline-offset: 3px;
+}
+html body h1,
+html body h2,
+html body h3,
+html body h5,
+html body h6 {
+  font-family: var(--hm-serif);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.005em;
+  line-height: 1.15;
+  color: var(--hm-ink);
+}
+/* sizes agreed with Lenka 2026-11-24: page title 52/38, section 36/28, sub-heading 26/22 (desktop/phone).
+   The page-template classes are needed to beat the theme's ".page-template-default h1 {36px}". */
+html body h1,
+html body .page-template-default h1,
+html body .page-template-page-edit h1 {
+  font-size: 52px;
+  margin: 72px 0 34px 0;
+  overflow-wrap: break-word;
+}
+html body h2 { font-size: 36px; }
+html body h3 { font-size: 26px; font-weight: 500; }
+html body h4 {
+  font-family: var(--hm-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hm-accent);
+}
+/* the coral line under section titles: thinner and shorter */
+html body h1 span,
+html body h2 span {
+  width: 44px;
+  height: 2px;
+  margin: 18px auto 0;
+  border-radius: 2px;
+}
+
+/* ---------- header ---------- */
+/* Lenka 2026-11-24: the menu over the photo was cramped and unreadable → dark header bar; then "poloprůhledná":
+   dark glass (72 % + blur) over the photo, dark enough to keep the white text readable on any background. Markup and the old scroll script are unchanged: .menu.is-fixed = page is scrolled. */
+html body .main-navigation ul ul {
+  padding: 8px 0;
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(20, 14, 12, 0.18);
+  overflow: hidden;
+}
+html body .top-nav,
+html body .site-header {
+  background: var(--hm-night);
+}
+@media (min-width: 1026px) {
+  html body .site-branding {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(28, 22, 21, 0.72);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: transform 0.25s ease, background-color 0.25s ease;
+  }
+  /* the photo starts under the contact strip; at least 520 px tall, so the top of the castle tower
+     (15.5 % from the top of the photo) always ends up below the 116 px header */
+  html body .site-header .slider {
+    padding-top: 40px;
+  }
+  html body .site-header .slider .slides img {
+    display: block;
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    object-position: center top;
+  }
+  html body .home .site-header .slider .slides img {
+    height: max(520px, 39.0625vw); /* homepage: the whole photo (1920 × 750) */
+  }
+  /* scrolled: the contact strip slides out, only the menu row stays – almost solid, because over the
+     white page the see-through bar looked grey */
+  html body .site-branding:has(.menu.is-fixed) {
+    background: rgba(28, 22, 21, 0.96);
+    transform: translateY(-40px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+  }
+  html body .top-nav {
+    height: 40px;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.45);
+  }
+  html body .top-nav .container,
+  html body .inmenu {
+    box-sizing: border-box;
+    width: calc(100% - 64px);
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  html body .top_kontakt {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 28px;
+    width: auto;
+    height: 40px;
+  }
+  html body .top_kontakt .telefon,
+  html body .top_kontakt .email {
+    margin: 0;
+    padding: 0 0 0 26px;
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.82);
+    background-size: 18px auto;
+    background-position: left center;
+  }
+  /* same target as the coral button in the menu row */
+  html body .top_kontakt > strong {
+    display: none;
+  }
+  html body .logo {
+    top: 52px;
+    left: 0;
+    margin: 0;
+    max-width: 148px;
+  }
+  html body .menu {
+    position: static !important;
+    top: auto !important;
+    height: 76px;
+    background: transparent;
+  }
+  html body .main-navigation > ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: clamp(16px, 1.9vw, 32px);
+    height: 76px;
+  }
+  html body .main-navigation > ul > li > a {
+    margin: 0;
+    padding: 10px 0;
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 24px;
+    white-space: nowrap;
+    opacity: 1;
+  }
+  html body .main-navigation > ul > li > a:hover,
+  html body .main-navigation > ul > li.select > a {
+    opacity: 1;
+  }
+  html body .main-navigation > ul > li > a:hover::before,
+  html body .main-navigation > ul > li.select > a::before {
+    height: 2px;
+    bottom: 6px;
+    background-color: var(--hm-accent);
+  }
+  /* the submenu opens right under its item, with no gap the mouse could fall into */
+  html body .main-navigation > ul > li > ul {
+    top: 100%;
+  }
+  html body .main-navigation ul ul a {
+    font-size: 14.5px;
+    letter-spacing: 0;
+  }
+  /* "Rezervace ubytování" (first item) → the one coral button, at the right end before the flag */
+  html body .main-navigation > ul > li.first {
+    order: 1;
+  }
+  html body .main-navigation > ul > li:has(> a[href="#pll_switcher"]) {
+    order: 2;
+  }
+  html body .main-navigation > ul > li.first > a {
+    padding: 10px 22px;
+    border-radius: 50px;
+    background: var(--hm-accent) !important;
+    transition: background-color 0.2s ease;
+  }
+  html body .main-navigation > ul > li.first > a:hover {
+    background: var(--hm-accent-dark) !important;
+  }
+  html body .main-navigation > ul > li.first > a::before {
+    display: none;
+  }
+}
+
+/* ---------- content ---------- */
+html body .page-template-page-home .entry-content {
+  max-width: 760px;
+}
+html body .page-template-page-home .entry-content p {
+  text-align: left;
+  font-size: 18px;
+}
+html body .entry-content strong {
+  color: var(--hm-ink);
+  font-weight: 700;
+}
+/* lists and price tables: light cards with a coral accent instead of solid coral blocks */
+html body .entry-content ul,
+html body .entry-content ol {
+  background: var(--hm-sand);
+  border: 1px solid var(--hm-sand-2);
+  border-left: 4px solid var(--hm-accent);
+  border-radius: 14px;
+  padding: 26px 30px 26px 50px;
+}
+html body .entry-content ul li,
+html body .entry-content ol li {
+  color: var(--hm-ink);
+  line-height: 1.7;
+}
+html body .entry-content ul li::marker,
+html body .entry-content ol li::marker {
+  color: var(--hm-accent);
+}
+html body .entry-content table {
+  background: #fff;
+  border: 1px solid var(--hm-sand-2);
+  border-radius: var(--hm-radius);
+  box-shadow: var(--hm-card-shadow);
+  padding: 16px 24px;
+}
+html body .entry-content table td {
+  color: var(--hm-ink);
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--hm-sand-2);
+}
+html body .entry-content table tr:last-child td {
+  border-bottom: 0;
+}
+html body .entry-content table:not(:has(td:nth-child(3))) td + td {
+  font-weight: 700;
+  color: var(--hm-accent-dark);
+  white-space: nowrap;
+}
+/* photos in the text + gallery thumbnails */
+html body .entry-content img {
+  border-radius: 12px;
+}
+html body .entry-content a img {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+html body .entry-content a:hover img {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(20, 14, 12, 0.18);
+}
+
+/* text the old editor made bigger inline (e.g. "svatbu" on Svatby): normal size, coral instead */
+html body .entry-content p span[style*="font-size"],
+html body .entry-content p span[style*="font-size"] * {
+  font-size: inherit !important;
+  line-height: inherit;
+}
+html body .entry-content p span[style*="font-size"] strong,
+html body .entry-content p span[style*="font-size"] strong * {
+  color: var(--hm-accent);
+  font-weight: 700;
+}
+
+/* ---------- photo galleries (simonet gallery) ---------- */
+html body .simonet_galerie {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 16px;
+  margin: 30px 0;
+}
+html body .simonet_galerie > p:empty {
+  display: none;
+}
+html body .simonet_galerie .imgbox {
+  width: auto;
+  margin: 0 !important; /* the plugin's ".foto5" margin is !important too – it made the right edge uneven */
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(40, 20, 20, 0.08);
+}
+html body .simonet_galerie .imgbox:hover {
+  transform: none;
+}
+html body .simonet_galerie .imgbox a {
+  display: block;
+  line-height: 0;
+}
+html body .simonet_galerie .imgbox img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.5s ease;
+}
+html body .simonet_galerie .imgbox a:hover img {
+  transform: scale(1.05);
+  box-shadow: none;
+}
+/* mosaic: big and small photos mixed, always a clean rectangle (sizes chosen in src/lib/gallery.ts) */
+html body .simonet_galerie.hm-mosaic {
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 190px;
+  grid-auto-flow: row dense;
+  gap: 14px;
+  margin: 36px 0;
+}
+html body .simonet_galerie.hm-mosaic .imgbox,
+html body .simonet_galerie.hm-mosaic .imgbox a {
+  height: 100%;
+}
+html body .simonet_galerie.hm-mosaic .imgbox img {
+  height: 100%;
+  aspect-ratio: auto;
+}
+html body .simonet_galerie.hm-mosaic .hm-big { grid-column: span 2; grid-row: span 2; }
+html body .simonet_galerie.hm-mosaic .hm-big.hm-right { grid-column: 3 / span 2; }
+html body .simonet_galerie.hm-mosaic .hm-wide { grid-column: span 2; }
+html body .simonet_galerie.hm-mosaic .hm-full { grid-column: 1 / -1; grid-row: span 2; }
+@media (max-width: 767px) {
+  html body .simonet_galerie.hm-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 120px;
+    gap: 10px;
+  }
+  html body .simonet_galerie.hm-mosaic .hm-big.hm-right { grid-column: span 2; }
+}
+
+/* ---------- short lists as cards side by side (src/lib/gallery.ts → ul.hm-cards) ---------- */
+html body .entry-content ul.hm-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+  margin: 26px 0 34px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  list-style: none;
+}
+html body .entry-content ul.hm-cards li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  margin: 0;
+  padding: 16px 18px 16px 52px;
+  background: #fff;
+  border: 1px solid #f1ebeb;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(40, 20, 20, 0.06);
+  color: var(--hm-ink);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  list-style: none;
+}
+html body .entry-content ul.hm-cards li::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  margin-top: -11px;
+  border-radius: 50%;
+  background: var(--hm-accent-soft)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' viewBox='0 0 12 10'%3E%3Cpath d='M1 5l3.5 3.5L11 1.5' fill='none' stroke='%23f25f5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat center;
+}
+
+/* ---------- reservation page: the Plazaro booking form (its inside can't be styled from here) ---------- */
+html body .entry-content p:has(> #gr-online-reservation) {
+  box-sizing: border-box;
+  max-width: 1000px;
+  margin: 10px auto 60px;
+  padding: 28px 32px;
+  background: #fff;
+  border: 1px solid #f1ebeb;
+  border-radius: var(--hm-radius);
+  box-shadow: var(--hm-card-shadow);
+}
+@media (max-width: 767px) {
+  html body .entry-content p:has(> #gr-online-reservation) {
+    padding: 12px 6px;
+  }
+}
+
+/* ---------- homepage: the three photo + text tiles ---------- */
+html body .upravy_obsah .sirein {
+  background: var(--hm-sand);
+}
+html body .upravy_obsah .sire2b .obsah_u {
+  background: transparent;
+}
+html body .upravy_obsah .inli h2,
+html body .upravy_obsah .inli h3,
+html body .upravy_obsah .inli .elementor-icon-box-title {
+  font-family: var(--hm-serif);
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--hm-ink);
+}
+html body .upravy_obsah .inli p {
+  font-size: 16px;
+  color: var(--hm-body);
+}
+
+/* ---------- homepage: references band ---------- */
+html body .dva_boxy_in_obsah2 {
+  background: var(--hm-night);
+  background-image: radial-gradient(120% 140% at 50% 0%, #3a2e2b 0%, var(--hm-night) 70%);
+  padding: 80px 0 70px;
+}
+html body .dva_boxy_in_obsah2 h2 span {
+  background-color: var(--hm-accent);
+}
+html body .dva_boxy_in_obsah2 .content_home_news2,
+html body .dva_boxy_in_obsah2 .content_home_news2 p {
+  font-family: var(--hm-serif);
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #f3ece8;
+}
+html body .dva_boxy_in_obsah2 .title_homenews2,
+html body .dva_boxy_in_obsah2 h3 {
+  font-family: var(--hm-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hm-accent);
+}
+
+/* ---------- "Novinky" (news cards at the bottom of every page) ---------- */
+html body .events-listing {
+  background: var(--hm-sand);
+  padding: 80px 45px;
+}
+html body .event-left {
+  overflow: hidden;
+  border-radius: var(--hm-radius);
+  background: #fff;
+  box-shadow: var(--hm-card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+html body .event-left:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(40, 20, 20, 0.12);
+}
+html body .event-left .event-list-item-date {
+  overflow: hidden;
+}
+html body .event-left .event-list-item-date img {
+  transition: transform 0.6s ease;
+}
+html body .event-left:hover .event-list-item-date img {
+  transform: scale(1.04);
+}
+html body .event-left .event-list-item-info {
+  border: 0;
+  padding: 24px 26px 28px;
+}
+html body .event-left .event-list-item-info,
+html body .event-left .event-list-item-info p {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--hm-body);
+}
+html body .event-left .event-title,
+html body .event-left .event-title a {
+  font-family: var(--hm-serif);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--hm-ink);
+  text-decoration: none;
+}
+html body .event-left a:hover {
+  color: var(--hm-accent);
+}
+
+/* ---------- footer ---------- */
+html body .footer-widget-area,
+html body .footer-widget-area .widget-background {
+  background: var(--hm-night);
+}
+html body .footer-widget-area .widget-title {
+  font-family: var(--hm-serif);
+  font-size: 26px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 12px;
+}
+html body .footer-widget-area,
+html body .footer-widget-area p,
+html body .footer-widget-area li,
+html body .footer-widget-area .kontakty_footer div {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
+  line-height: 1.7;
+}
+html body .footer-widget-area a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+html body .footer-widget-area a:hover {
+  color: var(--hm-accent);
+}
+html body .footer-widget-area ul li::marker {
+  color: var(--hm-accent);
+}
+html body .site-footer {
+  background: #1a1514;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+html body .site-footer,
+html body .footer_bot a {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+}
+
+@media (max-width: 767px) {
+  html body h1,
+  html body .page-template-default h1,
+  html body .page-template-page-edit h1 { font-size: 38px; margin: 44px 0 26px; }
+  html body h2 { font-size: 28px; }
+  html body h3,
+  html body .footer-widget-area .widget-title,
+  html body .firma_obsah h3,
+  html body .firma_obsah h3 a { font-size: 22px; }
+  html body p,
+  html body .entry-content li,
+  html body .entry-content td { font-size: 16px; }
+  html body .events-listing { padding: 56px 20px; }
+  html body .upravy_obsah .inli h2,
+  html body .upravy_obsah .inli h3,
+  html body .upravy_obsah .inli .elementor-icon-box-title { font-size: 28px; }
+}
+
+/* buttons (send, "CHCI REZERVOVAT", …): keep the coral pill, add depth + a calmer hover
+   (the original hover turned the button white with grey text) */
+html body input[type="submit"],
+html body .tl_default {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 8px 20px rgba(242, 95, 92, 0.28);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+html body input[type="submit"]:hover,
+html body .tl_default:hover {
+  background: var(--hm-accent-dark);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(242, 95, 92, 0.38);
+  transform: translateY(-1px);
+}
+html body input[type="submit"]:focus-visible,
+html body .tl_default:focus-visible {
+  outline: 3px solid var(--hm-accent-soft);
+  outline-offset: 3px;
+}
+html body input[type="submit"]:disabled {
+  opacity: 0.6;
+  transform: none;
+  cursor: default;
+}
+
+/* text fields in both forms */
+html body .wpcf7 input[type="text"],
+html body .wpcf7 input[type="email"],
+html body .wpcf7 input[type="tel"],
+html body .wpcf7 textarea,
+html body .objform input[type="text"],
+html body .objform textarea {
+  box-sizing: border-box;
+  /* !important: the theme fixes these fields to 200 px with ID selectors (#wpcf7-f2614-o1 …) */
+  width: 100% !important;
+  max-width: none;
+  min-width: 0;
+  height: 48px;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--hm-line);
+  border-radius: 10px;
+  background: var(--hm-field);
+  color: var(--hm-text);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+  box-shadow: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+html body .wpcf7 textarea,
+html body .objform textarea {
+  height: auto;
+  min-height: 130px;
+  resize: vertical;
+}
+html body .wpcf7 input:hover,
+html body .wpcf7 textarea:hover,
+html body .objform input[type="text"]:hover,
+html body .objform textarea:hover {
+  border-color: #d6cccc;
+}
+html body .wpcf7 input:focus,
+html body .wpcf7 textarea:focus,
+html body .objform input[type="text"]:focus,
+html body .objform textarea:focus {
+  outline: none;
+  border-color: var(--hm-accent);
+  background: #fff;
+  box-shadow: 0 0 0 4px var(--hm-accent-soft);
+}
+
+/* ---------- "Vaše dotazy" form (homepage + contact pages, all languages) ---------- */
+html body .wpcf7 form.wpcf7-form {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 22px;
+  max-width: 780px;
+  margin: 10px auto 40px auto;
+  padding: 40px 44px 36px;
+  background: #fff;
+  border: 1px solid #f1ebeb;
+  border-radius: var(--hm-radius);
+  box-shadow: var(--hm-card-shadow);
+  text-align: left;
+}
+html body .wpcf7 form.wpcf7-form > h2,
+html body .wpcf7 form.wpcf7-form > .textpole,
+html body .wpcf7 form.wpcf7-form > .souhlas,
+html body .wpcf7 form.wpcf7-form > p:has(.wpcf7-submit),
+html body .wpcf7 form.wpcf7-form > .wpcf7-response-output {
+  grid-column: 1 / -1;
+}
+html body .wpcf7 form.wpcf7-form > h2 {
+  margin: 0 0 6px 0;
+  text-align: center;
+}
+html body .wpcf7 form.wpcf7-form > p {
+  display: block;
+  margin: 0;
+  width: auto;
+}
+html body .wpcf7 p label,
+html body .wpcf7 p label .wpcf7-quiz-label {
+  display: block;
+  margin: 0 0 7px 2px;
+  color: var(--hm-text);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+/* the quiz label wraps its own field */
+html body .wpcf7 p .quiz-424 label {
+  margin: 0;
+}
+html body .wpcf7 .wpcf7-form-control-wrap {
+  display: block;
+}
+
+/* consent checkboxes: no grey pills, a clean row with a coral checkbox */
+html body .wpcf7 form.wpcf7-form > .souhlas {
+  margin: 0;
+  text-align: left;
+}
+html body .souhlas .acceptance-769 {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+}
+html body .souhlas .wpcf7-list-item,
+html body .souhlas .wpcf7-list-item label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+html body .wpcf7 input[type="checkbox"],
+html body .objform input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0 0;
+  accent-color: var(--hm-accent);
+  cursor: pointer;
+}
+html body .souhlas .wpcf7-list-item-label {
+  color: var(--hm-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+html body .souhlas .wpcf7-list-item-label a,
+html body .objform a {
+  color: var(--hm-accent);
+}
+
+html body .wpcf7 form.wpcf7-form > p:has(.wpcf7-submit) {
+  margin-top: 8px;
+  text-align: center;
+}
+html body .wpcf7 .wpcf7-submit {
+  margin: 0;
+  padding: 16px 52px 15px;
+}
+
+/* field errors + the message under the form */
+html body .wpcf7 .wpcf7-not-valid {
+  border-color: var(--hm-accent);
+  background: #fff8f8;
+}
+html body .wpcf7 .wpcf7-not-valid-tip {
+  margin: 6px 0 0 2px;
+  color: var(--hm-accent-dark);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+}
+html body .wpcf7 form .wpcf7-response-output {
+  margin: 4px 0 0 0;
+  padding: 14px 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 15px;
+  text-align: center;
+}
+html body .wpcf7 form.sent .wpcf7-response-output {
+  border-color: #bfe5c6;
+  background: #effaf1;
+  color: #2e7d32;
+}
+html body .wpcf7 form.invalid .wpcf7-response-output,
+html body .wpcf7 form.failed .wpcf7-response-output {
+  border-color: #f6c9c8;
+  background: #fff4f4;
+  color: #b8322e;
+}
+
+/* Ubytování (all languages): the section had its own "Vaše dotazy" title right above the form,
+   which has the same title inside its card → keep only the one in the card */
+html body .kontatk_form > h2.entry-title:has(+ .wpcf7) {
+  display: none;
+}
+
+/* ---------- contact page: ONE card (the "Recepce hotelu" box only repeated the same phone number) ---------- */
+html body .contacts-block .vsechny_osoby {
+  display: none;
+}
+html body .firma_obsah h3,
+html body .firma_obsah h3 a {
+  margin: 0 0 26px;
+  font-family: var(--hm-serif);
+  font-size: 26px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--hm-ink);
+  text-decoration: none;
+}
+html body .firma_obsah > a {
+  color: inherit;
+  text-decoration: none;
+}
+html body .firma_obsah a:empty {
+  display: none;
+}
+html body .firma_obsah div {
+  font-size: 16px;
+  color: var(--hm-ink);
+}
+
+/* ---------- contact boxes ("Recepce hotelu", "Hotel Magnolia") ---------- */
+html body .vsechny_osoby,
+html body .firma_obsah {
+  box-sizing: border-box;
+  max-width: 1024px;
+  border: 1px solid #f1ebeb;
+  border-radius: var(--hm-radius);
+  background: #fff;
+  box-shadow: var(--hm-card-shadow);
+}
+html body .vsechny_osoby {
+  padding: 28px 20px;
+}
+html body .firma_obsah {
+  padding: 30px 20px 26px;
+}
+html body .firma_obsah a {
+  text-decoration-color: rgba(119, 119, 119, 0.35);
+  text-underline-offset: 3px;
+}
+html body .firma_obsah a:hover,
+html body .vsechny_osoby a:hover {
+  color: var(--hm-accent);
+}
+
+/* ---------- package order form (wellness pages) ---------- */
+html body .objform {
+  box-sizing: border-box;
+  max-width: 1010px;
+  margin: 30px auto 0;
+  padding: 44px 36px;
+  border: 1px solid #f1ebeb;
+  border-radius: var(--hm-radius);
+  background: #fff;
+  box-shadow: var(--hm-card-shadow);
+}
+html body .objform label,
+html body .objform .top_title {
+  display: block;
+  margin: 0 0 7px 2px;
+  color: var(--hm-text);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+}
+html body .objform select {
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 40px 0 14px;
+  border: 1px solid var(--hm-line);
+  border-radius: 10px;
+  background: var(--hm-field)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23f25f5c' stroke-width='2'/%3E%3C/svg%3E")
+    no-repeat right 16px center;
+  color: var(--hm-text);
+  font-size: 16px;
+  text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+html body .objform select:focus {
+  outline: none;
+  border-color: var(--hm-accent);
+  box-shadow: 0 0 0 4px var(--hm-accent-soft);
+}
+html body .detailkurzu .obsah_block {
+  height: auto;
+  margin: 0 0 16px 0;
+}
+html body .objform .radioc {
+  box-shadow: 0 6px 16px rgba(242, 95, 92, 0.22);
+  transition: background-color 0.2s ease;
+}
+html body .objform .radioc label {
+  display: inline-block;
+  margin: 0;
+  color: #fff;
+  cursor: pointer;
+}
+html body .objform .souhlas label,
+html body .objform .souhlas2 label {
+  display: inline-block;
+  font-weight: 400;
+  color: var(--hm-muted);
+}
+html body .error_item {
+  border-width: 1px;
+  border-color: #f6c9c8;
+  border-radius: 12px;
+  background: #fff4f4;
+  font-weight: 600;
+}
+
+/* ---------- phones & small tablets ---------- */
+/* homepage tiles stack below 835 px: always photo first, then its text
+   (desktop zig-zag order would otherwise put two photos right after each other) */
+@media (max-width: 835px) {
+  html body .upravy_obsah .sirein {
+    display: flex;
+    flex-direction: column;
+  }
+  html body .upravy_obsah .sirein > li:nth-child(1) { order: 2; }
+  html body .upravy_obsah .sirein > li:nth-child(2) { order: 1; }
+  html body .upravy_obsah .sirein > li:nth-child(3) { order: 3; }
+  html body .upravy_obsah .sirein > li:nth-child(4) { order: 4; }
+  html body .upravy_obsah .sirein > li:nth-child(5) { order: 6; }
+  html body .upravy_obsah .sirein > li:nth-child(6) { order: 5; }
+}
+@media (max-width: 767px) {
+  html body .firma_obsah h3,
+  html body .firma_obsah h3 a {
+    font-size: 22px;
+  }
+  /* references band: the quote was cut off by the slider's fixed height */
+  html body .dva_boxy_in_obsah2 {
+    padding: 56px 0 48px;
+  }
+  html body .dva_boxy_in_obsah2 .slide-top-in2 {
+    height: 210px;
+  }
+  html body .dva_boxy_in_obsah2 .content_home_news2,
+  html body .dva_boxy_in_obsah2 .content_home_news2 p {
+    font-size: 20px;
+  }
+  /* price list: room and price on one line */
+  html body .entry-content table {
+    padding: 8px 14px;
+  }
+  html body .entry-content table:not(:has(td:nth-child(3))) tbody {
+    display: block;
+  }
+  html body .entry-content table:not(:has(td:nth-child(3))) tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    border-bottom: 1px solid var(--hm-sand-2);
+  }
+  html body .entry-content table tr:last-child {
+    border-bottom: 0;
+  }
+  html body .entry-content table:not(:has(td:nth-child(3))) td {
+    padding: 12px 0;
+    border-bottom: 0;
+    font-size: 15px;
+  }
+  /* short-item cards: two columns instead of one tall stack */
+  html body .entry-content ul.hm-cards {
+    /* minmax(0, …): long non-breaking phrases ("1x 20 min.") must not push a card past the screen edge */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  html body .entry-content ul.hm-cards li {
+    min-width: 0;
+    overflow-wrap: break-word;
+    min-height: 0;
+    padding: 12px 12px 12px 40px;
+    font-size: 14px;
+  }
+  html body .entry-content ul.hm-cards li::before {
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+  }
+}
+@media (max-width: 767px) {
+  html body .wpcf7 form.wpcf7-form {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 0 4px 30px;
+    padding: 26px 18px 24px;
+  }
+  html body .wpcf7 .wpcf7-submit {
+    width: 100%;
+  }
+  html body .objform {
+    padding: 24px 16px;
+  }
+  html body .vsechny_osoby,
+  html body .firma_obsah {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+}
+
+/* phones: the stuck menu bar has the same colour as the (now dark) header – globals.css had it coral */
+@media (max-width: 1025px) {
+  html body .site-header .menu.is-fixed {
+    background: rgba(28, 22, 21, 0.96);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* =====================================================================
+   UNIFIED HEADINGS (Lenka 2026-11-24: "sjednoť ty nadpisy") – one rule for all 104 pages
+   page title 52/38 centred + coral line · section 36/28 centred + coral line · sub-heading 26/22
+   (tiles, cards, sidebar and footer keep their own alignment and have no line)
+   ===================================================================== */
+html body .site-main h1,
+html body .content-area h1,
+html body .home h1.entry-title,
+html body .single h1,
+html body .site-content h1 {
+  text-align: center;
+}
+html body .events-listing h2,
+html body .category .events-listing h2 {
+  text-align: center;
+}
+html body h3,
+html body .firma_obsah h3,
+html body .firma_obsah h3 a {
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+/* the coral line: the old markup has an empty <span> under some titles only → hide those, draw it for all */
+html body h1 > span:empty,
+html body h2 > span:empty {
+  display: none;
+}
+html body .site-content h1::after,
+html body .site-content .entry-content > h2::after,
+html body .site-content h2.entry-title::after,
+html body .kontatk_form h2::after,
+html body .wpcf7 form.wpcf7-form > h2::after,
+html body .events-listing h2::after,
+html body .dva_boxy_in_obsah2 h2::after,
+html body .archive .homenewsinout > h2::after,
+html body .objform > h2::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 2px;
+  margin: 16px auto 0;
+  border-radius: 2px;
+  background: var(--hm-accent);
+}
+html body .site-content .entry-content > h2 {
+  margin: 38px 0 24px;
+}
+/* article overviews (news, tags, authors, months) have no <h1>; "Články" is their page title */
+html body .archive .homenewsinout > h2 {
+  margin: 72px 0 34px;
+  font-size: 52px;
+  text-align: center;
+}
+html body .site-content h3.title_homenews,
+html body .site-content h3.title_homenews a {
+  font-size: 26px;
+}
+/* sidebar titles (Rubriky, Archivy) are sub-headings */
+html body .widget-area h2 {
+  font-size: 26px;
+}
+html body h4 {
+  letter-spacing: 0.16em;
+}
+@media (max-width: 767px) {
+    html body .archive .homenewsinout > h2 {
+    margin: 44px 0 26px;
+    font-size: 38px;
+  }
+  html body .site-content h3.title_homenews,
+  html body .site-content h3.title_homenews a,
+  html body .widget-area h2 {
+    font-size: 22px;
+  }
+}
+/* unified headings – last exceptions of the theme */
+html body .archive .homenews .title_homenews { font-size: 26px; }
+html body .archive .widget-area h2 { margin-left: 0; margin-right: 0; text-align: left; }
+html body .page-template-default .entry-content h2::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 2px;
+  margin: 16px auto 0;
+  border-radius: 2px;
+  background: var(--hm-accent);
+}
+@media (max-width: 767px) {
+  html body .archive .homenews .title_homenews { font-size: 22px; }
+}
+html body .archive .homenewsinout > h2 { max-width: none; } /* .category h2 {1060px} pushed the title off-centre */
+
+/* tables with three and more columns (cookies): wrap, and scroll inside their card if still too wide */
+html body .entry-content table:has(td:nth-child(3)) {
+  overflow-x: auto;
+}
+html body .entry-content table:has(td:nth-child(3)) td {
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: left;
+  vertical-align: top;
+}
+@media (max-width: 767px) {
+  html body .entry-content table:has(td:nth-child(3)) td {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+}
+/* the language menu is the last item – open it to the left, otherwise the flags end up off-screen */
+@media (min-width: 1026px) {
+  html body .main-navigation > ul > li:has(> a[href="#pll_switcher"]) > ul {
+    left: auto;
+    right: 0;
+    min-width: 0;
+  }
+}
+/* phones: sub-items are listed inside the open menu – no floating boxes with shadows */
+@media (max-width: 1025px) {
+  html body .main-navigation ul ul {
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

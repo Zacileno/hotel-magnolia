@@ -7,6 +7,11 @@
 @import "@fontsource/open-sans/600.css";
 @import "@fontsource/open-sans/700.css";
 @import "@fontsource/spinnaker/400.css";
+/* redesign 2026-11 (src/styles/polish.css): serif headings + modern sans text, self-hosted */
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/500-italic.css";
+@import "@fontsource-variable/manrope/index.css";
 
 /* ---------- phones & tablets (the theme switches to the mobile menu at 1025 px) ---------- */
 @media screen and (max-width: 1025px) {
