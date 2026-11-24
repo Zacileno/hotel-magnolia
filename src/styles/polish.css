@@ -1440,3 +1440,25 @@ html body .wpcf7 form.wpcf7-form textarea {
     text-align: center;
   }
 }
+/* small laptops: the footer was fixed to 1170 px and ran past the edge */
+html body .footer-widget-area .widget-areain,
+html body .footer_bot {
+  box-sizing: border-box;
+  width: auto;
+  max-width: 1170px;
+}
+html body .entry-content ul.hm-cards li {
+  min-width: 0;
+  padding-right: 20px;
+  overflow-wrap: break-word;
+}
+@media (min-width: 768px) {
+  html body .entry-content ul.hm-cards.hm-cards-long {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+@media (max-width: 767px) {
+  html body .entry-content ul.hm-cards li {
+    padding-right: 12px;
+  }
+}
