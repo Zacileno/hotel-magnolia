@@ -821,12 +821,6 @@ html body .wpcf7 form.failed .wpcf7-response-output {
   color: #b8322e;
 }
 
-/* Ubytování (all languages): the section had its own "Vaše dotazy" title right above the form,
-   which has the same title inside its card → keep only the one in the card */
-html body .kontatk_form > h2.entry-title:has(+ .wpcf7) {
-  display: none;
-}
-
 /* ---------- contact page: ONE card (the "Recepce hotelu" box only repeated the same phone number) ---------- */
 html body .contacts-block .vsechny_osoby {
   display: none;
@@ -1253,4 +1247,11 @@ html body .dva_boxy_in_obsah2 .slide-top2 {
   width: auto;
   max-width: none;
   margin: 0;
+}
+
+/* subtitle in the form card (price lists) */
+html body .wpcf7 form.wpcf7-form > p.hm-form-lead {
+  grid-column: 1 / -1;
+  margin: -4px 0 4px;
+  text-align: center;
 }
