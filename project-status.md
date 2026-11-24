@@ -176,6 +176,11 @@
   - Plazaro: `theme=light` NEPOUŽÍVAT (načte se bez stylů), vnitřek formuláře nejde upravit.
   - Zbývá: patička a odkazy v EN/DE česky, chybný mailto v hlavičce, „Kapacita“ na Konferenci jako seznam.
 
+- 2026-11-24 Reference na úvodu vedle sebe (bez slideru), Fotogalerie jako mozaika (všech 35 fotek, `scripts/optimize-gallery.mjs`).
+  Formuláře mají jediný nadpis „Kontaktujte nás“ / „Contact us“ / „Kontaktieren Sie uns“ v kartě (`forms.ts` → `unifyFormTitles`).
+  Kontrola telefonu: 104 stránek × 320–1024 px, opravy na konci `polish.css` (hlavička na tabletech, kartičky, Novinky, objednávka).
+  Nalezeno, neopraveno: u objednávky pobytů jsou prohozené odkazy u souhlasů a souhlas s podmínkami je předem zaškrtnutý.
+
 ## 6. Log práce
 
 - 2026-11-18: Analýza originálu, zjištěn hack (cloaking, spam). Stažení čistých kopií (Wayback + živé), extrakce

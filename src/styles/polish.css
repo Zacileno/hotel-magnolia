@@ -821,12 +821,6 @@ html body .wpcf7 form.failed .wpcf7-response-output {
   color: #b8322e;
 }
 
-/* Ubytování (all languages): the section had its own "Vaše dotazy" title right above the form,
-   which has the same title inside its card → keep only the one in the card */
-html body .kontatk_form > h2.entry-title:has(+ .wpcf7) {
-  display: none;
-}
-
 /* ---------- contact page: ONE card (the "Recepce hotelu" box only repeated the same phone number) ---------- */
 html body .contacts-block .vsechny_osoby {
   display: none;
@@ -1253,4 +1247,196 @@ html body .dva_boxy_in_obsah2 .slide-top2 {
   width: auto;
   max-width: none;
   margin: 0;
+}
+
+/* subtitle in the form card (price lists) */
+html body .wpcf7 form.wpcf7-form > p.hm-form-lead {
+  grid-column: 1 / -1;
+  margin: -4px 0 4px;
+  text-align: center;
+}
+/* Ubytování: the theme fixed the intro to 1200 px, which ran past the edge on tablets */
+html body .upravy_obsah .celasire .inli {
+  box-sizing: border-box;
+  width: auto;
+  max-width: 1200px;
+}
+/* iPhones zoom into the page when a field has less than 16 px */
+@media (max-width: 1025px) {
+  html body .objform input,
+  html body .objform select,
+  html body .objform textarea {
+    font-size: 16px;
+  }
+}
+
+/* =====================================================================
+   PHONE CHECK (Lenka 2026-11-24: "vše zcheckuj pro telefon")
+   ===================================================================== */
+/* news cards: the excerpt was tiny, pale and in another font */
+html body .event-left .event-list-item-info .meta-data,
+html body .event-left .event-list-item-info .meta-data *,
+html body .event-left .event-list-item-info .lined-info {
+  font-family: var(--hm-sans);
+}
+html body .event-left .event-list-item-info .meta-data,
+html body .event-left .event-list-item-info .meta-data span,
+html body .event-left .event-list-item-info .event-location-address {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--hm-body);
+}
+html body .event-left .event-list-item-info .meta-data a {
+  font-size: 15px;
+  color: var(--hm-accent-dark);
+}
+/* article overviews: soft lines, titles aligned with the text */
+html body .archive .homenews {
+  border-top-color: var(--hm-sand-2);
+}
+html body .archive .homenews .title_homenews {
+  padding: 18px 0 14px;
+}
+@media (max-width: 1025px) {
+  /* reservation: a button instead of underlined text */
+  html body .top_kontakt > strong a {
+    display: inline-block;
+    margin-left: 12px;
+    padding: 9px 18px;
+    border-radius: 50px;
+    background: var(--hm-accent);
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  html body .top_kontakt .telefon {
+    line-height: 24px;
+  }
+  /* ☰ – a bigger area to tap, same look */
+  html body .mobilemenu {
+    position: relative;
+  }
+  html body .mobilemenu::after {
+    content: "";
+    position: absolute;
+    inset: -12px 0;
+  }
+  html body .objform input,
+  html body .objform input.mnozstvi,
+  html body .objform .mnozstvi_prvek input,
+  html body .detailkurzu form input[type] {
+    font-size: 16px;
+  }
+}
+@media (max-width: 767px) {
+  html body .site-content h1,
+  html body .page-template-default .site-content h1,
+  html body .page-template-page-edit .site-content h1,
+  html body .archive .homenewsinout > h2 {
+    margin-top: 6px;
+  }
+  html body .home .site-content h1 {
+    margin-top: 40px;
+  }
+  html body .single .site-content h1 {
+    margin-top: 28px;
+  }
+  html body .entry-content ul.hm-cards.hm-cards-long {
+    grid-template-columns: 1fr;
+  }
+  html body .archive .homenewsinout > h2 {
+    margin-bottom: 26px;
+  }
+}
+/* news titles keep the serif */
+html body .event-left .event-list-item-info .event-title,
+html body .event-left .event-list-item-info .event-title a {
+  font-family: var(--hm-serif);
+}
+html body .archive .homenews,
+html body .archive .homenews .homenewsin,
+html body .archive .homenews .homenews_footer,
+html body .homenewsinout .homenews {
+  border-color: var(--hm-sand-2);
+}
+html body .entry-content table:has(td:nth-child(3)) td {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 340px) {
+  html body .entry-content ul.hm-cards {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 1025px) {
+  html body .top_kontakt > strong a {
+    padding: 5px 16px;
+  }
+}
+@media (max-width: 767px) {
+  /* order form: air between the fields, checkboxes next to their text */
+  html body .objform input[type="text"],
+  html body .objform textarea,
+  html body .objform select {
+    margin-bottom: 18px;
+  }
+  html body .objform .obsah_block,
+  html body .objform .obsah_inline {
+    margin-bottom: 0;
+  }
+  html body .objform .souhlas,
+  html body .objform .souhlas2 {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+    text-align: left;
+  }
+  html body .objform .souhlas label,
+  html body .objform .souhlas2 label {
+    flex: 1;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+/* EN/DE contact form: the theme narrowed the message field with ID rules (#wpcf7-f3152-o1 …) */
+html body .wpcf7 form.wpcf7-form > .textpole {
+  margin: 0 !important;
+}
+html body .wpcf7 form.wpcf7-form > .textpole label {
+  text-align: left !important;
+}
+html body .wpcf7 form.wpcf7-form textarea {
+  max-width: none !important;
+  height: auto !important;
+}
+/* tablets (616–1025 px): logo, contact and ☰ on the dark header, the photo below – same as on phones */
+@media (min-width: 616px) and (max-width: 1025px) {
+  html body .site-branding {
+    position: relative;
+    height: 168px;
+    background: var(--hm-night);
+  }
+  html body .top-nav {
+    padding: 14px 0 0;
+  }
+  html body .top-nav .container {
+    padding: 0;
+  }
+  html body .logo {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block !important;
+    width: 100%;
+    max-width: none;
+    margin: 0 0 12px;
+    text-align: center;
+  }
+  html body .logo a img {
+    width: 140px;
+  }
+  html body .top_kontakt {
+    text-align: center;
+  }
 }

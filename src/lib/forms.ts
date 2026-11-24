@@ -16,7 +16,6 @@ export const QUIZ_ANSWERS: Record<string, string[]> = {
 
 type FormTexts = {
   htmlLang: string;
-  title: string;
   name: string;
   email: string;
   phone: string;
@@ -34,7 +33,6 @@ type FormTexts = {
 const TEXTS: Record<Exclude<Lang, "cs">, FormTexts> = {
   en: {
     htmlLang: "en",
-    title: "Your questions",
     name: "Your name",
     email: "Your e-mail",
     phone: "Your phone number",
@@ -50,7 +48,6 @@ const TEXTS: Record<Exclude<Lang, "cs">, FormTexts> = {
   },
   de: {
     htmlLang: "de",
-    title: "Ihre Fragen",
     name: "Ihr Name",
     email: "Ihre E-Mail-Adresse",
     phone: "Ihre Telefonnummer",
@@ -69,9 +66,7 @@ const TEXTS: Record<Exclude<Lang, "cs">, FormTexts> = {
 export function translateForms(html: string, lang: Lang): string {
   if (lang === "cs") return html;
   const t = TEXTS[lang];
-  return html
-    .replace(/(<h2[^>]*>)\s*Vaše(?:\s|&nbsp;)dotazy/g, `$1${t.title}`)
-    .replace(/<div role="form" class="wpcf7"[\s\S]*?<\/form>/g, (form) =>
+  return html.replace(/<div role="form" class="wpcf7"[\s\S]*?<\/form>/g, (form) =>
       form
         .replace('lang="cs-CZ"', `lang="${t.htmlLang}"`)
         .replace("Vaše jméno", t.name)
@@ -90,4 +85,24 @@ export function translateForms(html: string, lang: Lang): string {
         )
         .replace('value="Odeslat"', `value="${t.send}"`)
     );
+}
+
+// One title per form (Lenka 2026-11-24): the pages had "Kontaktujte nás" above the form and "Vaše dotazy" inside
+// it → only "Kontaktujte nás", inside the card, the same on all pages and in all languages. On the price lists
+// the line above the form ("Nezávazná poptávka ubytování") becomes a subtitle in the card.
+const FORM_TITLE: Record<Lang, string> = { cs: "Kontaktujte nás", en: "Contact us", de: "Kontaktieren Sie uns" };
+
+export function unifyFormTitles(html: string, lang: Lang): string {
+  let lead = "";
+  const form = '(?=\\s*<div role="form" class="wpcf7")';
+  return html
+    .replace(new RegExp(`<h2[^>]*>\\s*(?:Kontaktujte(?:\\s|&nbsp;)nás|Contact us|Kontakt|Vaše(?:\\s|&nbsp;)dotazy)\\s*(?:<span></span>)?\\s*</h2>${form}`, "g"), "")
+    .replace(
+      new RegExp(`<(h2|p)>((?:Nezávazná poptávka ubytování|Non-binding accommodation inquiry|Unverbindliche Unterkunftsanfrage))</\\1>${form}`),
+      (_m: string, _tag: string, text: string) => {
+        lead = `<p class="hm-form-lead">${text}</p>`;
+        return "";
+      }
+    )
+    .replace(/<h2 class="entry-title">\s*Vaše(?:\s|&nbsp;)dotazy\s*(?:<span><\/span>)?\s*<\/h2>/g, () => `<h2 class="entry-title">${FORM_TITLE[lang]}</h2>${lead}`);
 }

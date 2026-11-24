@@ -77,6 +77,8 @@ export function cardLists(html: string): string {
   return html.replace(/<ul>([\s\S]*?)<\/ul>/g, (list: string, inner: string) => {
     const items = [...inner.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/g)].map((m) => m[1].replace(/<[^>]+>/g, "").trim());
     if (items.length < 2 || items.some((t) => t.length === 0 || t.length > CARD_MAX_CHARS)) return list;
-    return `<ul class="hm-cards">${inner}</ul>`;
+    // a phrase held together by non-breaking spaces ("20 min. částečnou") does not fit half a phone screen
+    const long = items.some((t) => t.replace(/&nbsp;|\u00a0/g, "_").split(/\s+/).some((chunk) => chunk.length > 13));
+    return `<ul class="hm-cards${long ? " hm-cards-long" : ""}">${inner}</ul>`;
   });
 }
