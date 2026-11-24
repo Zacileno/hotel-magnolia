@@ -183,7 +183,7 @@
 - 2026-11-24 **Články** (11 stránek typu `single-post`): fotka vlevo, nadpis + datum + text vpravo (`src/lib/articles.ts`), větší fotky
   `*-article.webp` (`scripts/optimize-articles.mjs` → `src/lib/article-photos.json`).
 - 2026-11-24 **Reference** (CZ/EN/DE): vlastní posuvník s korálovými šipkami místo Trustindexu (opakoval recenze, jeho skript a styly se už
-  nenačítají), recenze v `src/lib/reviews.ts`: 4 z Bookingu 2026 (screenshoty od Lenky, jen část „co se líbilo“, Renata zkrácená), 2 z úvodu,
+  nenačítají), recenze v `src/lib/reviews.ts`: 4 z Bookingu 2026 (screenshoty od Lenky, jen část „co se líbilo“, Renata zkrácená),
   po jedné původní s 10/9/8. Nepoužívat 9,3 jako známku hosta (je to lokalita hotelu).
 
 ## 6. Log práce

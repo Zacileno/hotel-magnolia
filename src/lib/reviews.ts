@@ -1,7 +1,7 @@
 // References page (Lenka 2026-11-24): the review slider keeps its look, but every review is there only once.
 // The original Booking slider (Trustindex) had 10 reviews from 2021, most of them the same two words, and its script
 // cloned the cards. It is replaced while rendering by our own slider (arrows: reviewSlider in SiteScripts.tsx):
-// Booking reviews supplied by Lenka, the two guest quotes from the homepage and one original review of each score 8+.
+// Booking reviews supplied by Lenka and one original Booking review of each score 8+ (homepage quotes stay only there).
 // The stored page content stays as it is. To add a review, add it to REVIEWS.
 import type { Lang } from "@/lib/content";
 
@@ -36,7 +36,6 @@ const REVIEWS: Review[] = [
     date: "2026-09-14",
     text: "…Lokalita hotelu je parádní, přímo na náměstí, takže kousek od zámku či zastávky na autobus, taktéž na vlak je to kousek. Za mě úplně nejvíc skvělé matrace - spala jsem jak miminko…",
   },
-  { name: "Jana K.", color: "#b04f8f", booking: false, text: "Úžasný a&nbsp;milý personál, krásné prostředí, byly jsme moc spokojeni." },
   {
     name: "Monika",
     color: "#3bb2e6",
@@ -54,12 +53,6 @@ const REVIEWS: Review[] = [
     title: "Doporučuji",
     date: "2026-10-27",
     text: "Vyhovující, splněny všechny požadavky které jsme v&nbsp;naši skupině chtěli",
-  },
-  {
-    name: "Zuzana",
-    color: "#f0965a",
-    booking: false,
-    text: "Krasný hotel přívětivý personál, vyšlo i&nbsp;počasí a&nbsp;pobyt jsme si užili, když bude možnost rádi se vrátíme.",
   },
   { name: "Paul", color: "#b04f8f", booking: true, level: 2, score: 10, date: "2021-08-15" },
   { name: "Zeman", color: "#f0965a", booking: true, level: 1, score: 9, date: "2021-08-21" },
