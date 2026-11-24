@@ -1462,3 +1462,9 @@ html body .entry-content ul.hm-cards li {
     padding-right: 12px;
   }
 }
+/* contact card: 1024 px wide, but never wider than the page */
+html body .contacts-block .contacts-title,
+html body .firma_obsah {
+  width: auto;
+  max-width: 1024px;
+}
