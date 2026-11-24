@@ -1468,3 +1468,217 @@ html body .firma_obsah {
   width: auto;
   max-width: 1024px;
 }
+
+/* ---------- articles: photo left, title + text right (Lenka 2026-11-24, src/lib/articles.ts) ---------- */
+html body .hm-article {
+  display: grid;
+  grid-template-columns: minmax(0, 500px) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: 56px;
+  row-gap: 24px;
+  align-items: start;
+  margin: 24px 0 48px;
+}
+html body .hm-article-text {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+html body .hm-article-photo {
+  grid-column: 1;
+}
+html body .entry-content .hm-article-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  margin: 0;
+  object-fit: cover;
+  border-radius: 14px;
+}
+html body .site-content .hm-article h1.entry-title {
+  margin: 0 0 14px;
+  text-align: left;
+}
+html body .site-content .hm-article h1.entry-title::after {
+  margin-left: 0;
+}
+html body .hm-article-date {
+  margin-bottom: 18px;
+  font-size: 15px;
+  color: var(--hm-muted);
+}
+html body .hm-article-text > p:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 900px) {
+  html body .hm-article {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    margin-top: 0;
+  }
+  html body .hm-article-text,
+  html body .hm-article-photo {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* ---------- References: review slider with coral arrows (Lenka 2026-11-24, src/lib/reviews.ts) ---------- */
+html body .hm-reviews {
+  position: relative;
+  padding: 0 44px;
+}
+html body .hm-rev-track {
+  --per: 3;
+  display: flex;
+  gap: 34px;
+  margin: 0 -8px;
+  padding: 16px 14px 30px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 14px;
+  scrollbar-width: none;
+  outline-offset: 4px;
+}
+html body .hm-rev-track::-webkit-scrollbar {
+  display: none;
+}
+html body .hm-rev-item {
+  display: flex;
+  flex: 0 0 calc((100% - 34px * (var(--per) - 1)) / var(--per));
+  flex-direction: column;
+  scroll-snap-align: start;
+}
+html body .hm-rev-card {
+  position: relative;
+  flex: 1;
+  box-sizing: border-box;
+  min-height: 210px;
+  padding: 24px 26px 28px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 3px 13px rgba(40, 20, 20, 0.12);
+}
+html body .hm-rev-card::after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  left: 34px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+html body .hm-rev-top {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  margin-bottom: 12px;
+}
+html body .hm-rev-score,
+html body .hm-rev-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: #003580;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+html body .hm-rev-score {
+  border-radius: 6px 6px 6px 0;
+}
+html body .hm-rev-logo {
+  margin-left: auto;
+  font-size: 16px;
+}
+html body .hm-rev-logo i {
+  font-size: 16px;
+  font-style: normal;
+  color: #00baff;
+}
+html body .hm-rev-mark {
+  height: 30px;
+  font-family: var(--hm-serif);
+  font-size: 64px;
+  line-height: 1;
+  color: var(--hm-accent);
+}
+html body .hm-rev-card p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+}
+html body .hm-rev-title {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--hm-ink);
+}
+html body .hm-rev-who {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 12px 0;
+}
+html body .hm-rev-avatar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 19px;
+  font-weight: 600;
+  color: #fff;
+}
+html body .hm-rev-who strong,
+html body .hm-rev-who small {
+  display: block;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--hm-ink);
+}
+html body .hm-rev-who small {
+  font-size: 13px;
+  color: var(--hm-muted);
+}
+html body .hm-rev-arrow {
+  position: absolute;
+  top: 121px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  box-shadow: none;
+  color: var(--hm-accent);
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+html body .hm-rev-arrow:hover {
+  background: var(--hm-accent-soft);
+  color: var(--hm-accent-dark);
+}
+html body .hm-rev-prev { left: 0; }
+html body .hm-rev-next { right: 0; }
+@media (max-width: 1025px) {
+  html body .hm-rev-track { --per: 2; }
+}
+@media (max-width: 700px) {
+  html body .hm-reviews { padding: 0 34px; }
+  html body .hm-rev-track { --per: 1; }
+  html body .hm-rev-prev { left: -10px; }
+  html body .hm-rev-next { right: -10px; }
+}

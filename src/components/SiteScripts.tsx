@@ -444,10 +444,38 @@ function packageForms(): Cleanup {
   return () => offs.forEach((o) => o());
 }
 
+/* ---------- review slider on the References pages (src/lib/reviews.ts): arrows move by one review, loops at the ends ---------- */
+function reviewSlider(): Cleanup {
+  const track = document.querySelector<HTMLElement>(".hm-rev-track");
+  const prev = document.querySelector<HTMLElement>(".hm-rev-prev");
+  const next = document.querySelector<HTMLElement>(".hm-rev-next");
+  if (!track || !prev || !next) return () => {};
+  let target: number | null = null; // where a running smooth scroll is heading, so fast clicks do not get lost
+  const move = (dir: 1 | -1) => {
+    const items = track.querySelectorAll<HTMLElement>(".hm-rev-item");
+    const step = items.length > 1 ? items[1].offsetLeft - items[0].offsetLeft : track.clientWidth;
+    const last = Math.round((track.scrollWidth - track.clientWidth) / step);
+    const now = target ?? Math.round(track.scrollLeft / step);
+    target = dir > 0 ? (now >= last ? 0 : now + 1) : now <= 0 ? last : now - 1;
+    track.scrollTo({ left: target * step, behavior: "smooth" });
+  };
+  const onEnd = () => (target = null);
+  track.addEventListener("scrollend", onEnd);
+  const onPrev = () => move(-1);
+  const onNext = () => move(1);
+  prev.addEventListener("click", onPrev);
+  next.addEventListener("click", onNext);
+  return () => {
+    track.removeEventListener("scrollend", onEnd);
+    prev.removeEventListener("click", onPrev);
+    next.removeEventListener("click", onNext);
+  };
+}
+
 export default function SiteScripts({ lang }: { lang: Lang }) {
   useEffect(() => {
     document.documentElement.classList.remove("no-js");
-    const cleanups = [stickyMenu(), mobileMenu(), lightbox(), contactForms(lang), packageForms()];
+    const cleanups = [stickyMenu(), mobileMenu(), lightbox(), contactForms(lang), packageForms(), reviewSlider()];
     return () => cleanups.forEach((c) => c());
   }, [lang]);
   return null;

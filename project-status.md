@@ -179,7 +179,12 @@
 - 2026-11-24 Reference na úvodu vedle sebe (bez slideru), Fotogalerie jako mozaika (všech 35 fotek, `scripts/optimize-gallery.mjs`).
   Formuláře mají jediný nadpis „Kontaktujte nás“ / „Contact us“ / „Kontaktieren Sie uns“ v kartě (`forms.ts` → `unifyFormTitles`).
   Kontrola telefonu: 104 stránek × 320–1024 px, opravy na konci `polish.css` (hlavička na tabletech, kartičky, Novinky, objednávka).
-  Nalezeno, neopraveno: u objednávky pobytů jsou prohozené odkazy u souhlasů a souhlas s podmínkami je předem zaškrtnutý.
+  Prohozené odkazy u souhlasů v objednávce pobytů opraveny; souhlas s podmínkami je stále předem zaškrtnutý.
+- 2026-11-24 **Články** (11 stránek typu `single-post`): fotka vlevo, nadpis + datum + text vpravo (`src/lib/articles.ts`), větší fotky
+  `*-article.webp` (`scripts/optimize-articles.mjs` → `src/lib/article-photos.json`).
+- 2026-11-24 **Reference** (CZ/EN/DE): vlastní posuvník s korálovými šipkami místo Trustindexu (opakoval recenze, jeho skript a styly se už
+  nenačítají), recenze v `src/lib/reviews.ts`: 4 z Bookingu 2026 (screenshoty od Lenky, jen část „co se líbilo“, Renata zkrácená), 2 z úvodu,
+  po jedné původní s 10/9/8. Nepoužívat 9,3 jako známku hosta (je to lokalita hotelu).
 
 ## 6. Log práce
 
