@@ -185,6 +185,8 @@
 - 2026-11-24 **Reference** (CZ/EN/DE): vlastní posuvník s korálovými šipkami místo Trustindexu (opakoval recenze, jeho skript a styly se už
   nenačítají), recenze v `src/lib/reviews.ts`: 4 z Bookingu 2026 (screenshoty od Lenky, jen část „co se líbilo“, Renata zkrácená),
   po jedné původní s 10/9/8. Nepoužívat 9,3 jako známku hosta (je to lokalita hotelu).
+- 2026-11-24 **Kontakt** (CZ/EN/DE): formulář vlevo, karta Hotel Magnolia vpravo (od 901 px, konec `polish.css`), adresa na dva řádky (`map.ts`).
+  Ceník na webu (2023, EN/DE 2021) nesedí s cenami v Plazaro, řeší Lenka.
 
 ## 6. Log práce
 

@@ -9,5 +9,6 @@ const ORIGINAL_EMBED = /https:\/\/www\.google\.com\/maps\/embed\?pb=[^"]*0x114b4
 
 export function addressMap(html: string, lang: Lang): string {
   const src = `https://maps.google.com/maps?q=${encodeURIComponent(ADDRESS)}&amp;z=16&amp;hl=${lang}&amp;output=embed`;
-  return html.replace(ORIGINAL_EMBED, src);
+  // contact card: street on the first line, postcode + town on the second (as in the footer)
+  return html.replace(ORIGINAL_EMBED, src).replaceAll(`class="adresa">${ADDRESS}`, `class="adresa">${ADDRESS.replace(", ", ",<br>")}`);
 }
