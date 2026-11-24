@@ -22,10 +22,14 @@ export function optimizeHero(html: string): { html: string; hero: string | null 
   let hero: string | null = null;
   const out = html.replace(/<img\b[^>]*>/g, (tag) => {
     const src = /\ssrc="([^"]+)"/.exec(tag)?.[1];
-    if (!src || !HERO_IMAGES.includes(src) || !tag.includes("msDefaultImage") || tag.includes("srcset=")) return tag;
+    // slider photos only (class "slider-NNNN …"; 48 of the 104 pages lack the extra "msDefaultImage" class)
+    if (!src || !HERO_IMAGES.includes(src) || !/\sclass="slider-\d+/.test(tag) || tag.includes("srcset=")) return tag;
     const extra = ` srcset="${heroSrcSet(src)}" sizes="${HERO_SIZES}"` + (hero ? "" : ' fetchpriority="high"');
     hero ??= src;
-    return tag.replace(/<img\b/, `<img${extra}`);
+    // some of the smaller files are rounded to whole pixels (480×113 instead of 480×112.5), which made the photo
+    // up to 1 px taller → keep the exact proportions of the original
+    const ratio = / width="(\d+)"/.exec(tag)?.[1] + " / " + / height="(\d+)"/.exec(tag)?.[1];
+    return tag.replace(/<img\b/, `<img${extra} style="aspect-ratio: ${ratio}"`);
   });
   return { html: out, hero };
 }

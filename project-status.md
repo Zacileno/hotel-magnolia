@@ -160,6 +160,9 @@
   hodnocení“, zvolila variantu „mapa podle adresy“): `src/lib/map.ts` při vykreslení nahradí původní mapu
   navázanou na firemní profil (Google v rohu ukazoval 3,9 ★) mapou podle adresy Karlovo náměstí 20 – stejné
   místo i velikost, v rohu jen adresa. Popisky mapy v jazyce stránky (CZ/EN/DE). Obsah v `src/content` beze změny.
+  - 2026-11-24 oprava: menší WebP verze úvodní fotky mělo jen 56 ze 104 stránek (podmínka na třídu `msDefaultImage`), zbylých 48
+    (Svatby, Ceník, Kontakt, EN/DE úvod…) stahovalo celý JPG. Opraveno v `src/lib/hero.ts` + pevný poměr stran (`aspect-ratio`).
+    Porovnáno s ostrým webem: 48 stránek × 5 displejů, rozložení stejné (max. 0,1 px). Fotka na mobilu 254 → 68 KiB (DPR 2).
   - Zvažováno a NEprovedeno (změnilo by vzhled): optimalizace loga SVG (odlišné pixely), WebP pro ostatní
     fotky (jiná komprese). Pozn.: největší zbývající zátěž je měření (GTM, GA, Meta pixel ~ 550 KiB JS).
 
