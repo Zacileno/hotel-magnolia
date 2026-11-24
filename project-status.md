@@ -174,7 +174,7 @@
   - Kontakt jedna karta, formuláře v kartě; EN/DE formuláře přeložené (`forms.ts`, vč. kontrolní otázky na serveru).
   - Texty změněné v obsahu: Restaurace bez „(aktuálně 2021)“ (CZ/EN/DE), pořadí fotek Konference (CZ), Ubytování → odkaz „konferenční sál“ na /konference/.
   - Plazaro: `theme=light` NEPOUŽÍVAT (načte se bez stylů), vnitřek formuláře nejde upravit.
-  - Zbývá: patička a odkazy v EN/DE česky, chybný mailto v hlavičce, „Kapacita“ na Konferenci jako seznam.
+  - Zbývá: „Kapacita“ na Konferenci jako seznam.
 
 - 2026-11-24 Reference na úvodu vedle sebe (bez slideru), Fotogalerie jako mozaika (všech 35 fotek, `scripts/optimize-gallery.mjs`).
   Formuláře mají jediný nadpis „Kontaktujte nás“ / „Contact us“ / „Kontaktieren Sie uns“ v kartě (`forms.ts` → `unifyFormTitles`).
@@ -187,6 +187,10 @@
   po jedné původní s 10/9/8. Nepoužívat 9,3 jako známku hosta (je to lokalita hotelu).
 - 2026-11-24 **Kontakt** (CZ/EN/DE): formulář vlevo, karta Hotel Magnolia vpravo (od 901 px, konec `polish.css`), adresa na dva řádky (`map.ts`).
   Ceník na webu (2023, EN/DE 2021) nesedí s cenami v Plazaro, řeší Lenka.
+- 2026-11-24 **Překlepy a překlady** (přímo v `src/content/pages`, CZ/EN/DE) + `src/lib/chrome.ts`: čistý e-mail v hlavičce, hlavička a patička v EN/DE přeložené
+  i s odkazy na jazykové verze (německé podmínky nejsou → /vop/). Restaurace: dvě fotky vyšší (270/190 px).
+  Audit nesrovnalostí (čeká na hotel/Lenku): pobyty Ferdinanda, sídlo firmy (ARES Krnská 120/1), GA jen UA, cookie lišta, sitemap/robots 404,
+  časy příjezdu, hotovost, počty pokojů, kapacita sálu, restaurace, DPH 15 %, menu EN/DE (Hotel → #, DE bez Restaurace).
 
 ## 6. Log práce
 

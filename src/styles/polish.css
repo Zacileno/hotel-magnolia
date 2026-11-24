@@ -1750,3 +1750,17 @@ html body .hm-rev-next { right: 0; }
     margin: 0;
   }
 }
+
+/* ---------- Restaurant page (CZ/EN/DE): the two photos taller (Lenka 2026-11-24; were 190 px, 120 px on phones) ---------- */
+html body .page-id-2581 .simonet_galerie.hm-mosaic,
+html body .page-id-3066 .simonet_galerie.hm-mosaic,
+html body .page-id-3101 .simonet_galerie.hm-mosaic {
+  grid-auto-rows: 270px;
+}
+@media (max-width: 767px) {
+  html body .page-id-2581 .simonet_galerie.hm-mosaic,
+  html body .page-id-3066 .simonet_galerie.hm-mosaic,
+  html body .page-id-3101 .simonet_galerie.hm-mosaic {
+    grid-auto-rows: 190px;
+  }
+}
