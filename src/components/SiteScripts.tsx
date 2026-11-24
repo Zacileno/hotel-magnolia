@@ -106,55 +106,6 @@ function mobileMenu(): Cleanup {
   return () => button.removeEventListener("click", onClick);
 }
 
-/* ---------- references slider on the homepage (simonet.js setMain2/startSimSlide2) ---------- */
-function referenceSlider(): Cleanup {
-  const list = document.querySelector<HTMLElement>(".slide-top-list2");
-  const inner = document.querySelector<HTMLElement>(".slide-top-in2");
-  if (!list || !inner) return () => {};
-  let current = 1;
-  let timer: number | undefined;
-
-  const layout = () => {
-    // The old script also tried to set the list height and the outer width, but those values
-    // came out as NaN (it measured elements that don't exist), so jQuery ignored them and the
-    // CSS sizes applied. Only the widths below were really set.
-    const items = list.querySelectorAll<HTMLElement>(".slide-top-item2");
-    const itemWidth = inner.offsetWidth;
-    items.forEach((it) => (it.style.width = itemWidth + "px"));
-    list.style.width = itemWidth * items.length + "px";
-  };
-  const step = () => {
-    layout();
-    const count = list.querySelectorAll(".slide-top-item2").length;
-    const w = inner.offsetWidth;
-    let left = 0;
-    if (current < count) {
-      current += 1;
-      left = -(w * current - w);
-    } else {
-      current = 1;
-    }
-    list.animate([{ left: getComputedStyle(list).left }, { left: left + "px" }], { duration: 350, fill: "forwards" }).onfinish =
-      () => (list.style.left = left + "px");
-  };
-  const start = () => (timer = window.setInterval(step, 5000));
-  const onResize = () => {
-    window.clearInterval(timer);
-    layout();
-    list.getAnimations().forEach((a) => a.cancel());
-    list.style.left = "0px";
-    current = 1;
-    start();
-  };
-  layout();
-  start();
-  window.addEventListener("resize", onResize);
-  return () => {
-    window.clearInterval(timer);
-    window.removeEventListener("resize", onResize);
-  };
-}
-
 /* ---------- photo lightbox (Easy FancyBox 1.5.4, same markup so the original CSS applies) ---------- */
 function lightbox(): Cleanup {
   const selector = 'a[href$=".jpg" i], a[href$=".jpeg" i], a[href$=".png" i], a[href$=".webp" i]';
@@ -496,7 +447,7 @@ function packageForms(): Cleanup {
 export default function SiteScripts({ lang }: { lang: Lang }) {
   useEffect(() => {
     document.documentElement.classList.remove("no-js");
-    const cleanups = [stickyMenu(), mobileMenu(), referenceSlider(), lightbox(), contactForms(lang), packageForms()];
+    const cleanups = [stickyMenu(), mobileMenu(), lightbox(), contactForms(lang), packageForms()];
     return () => cleanups.forEach((c) => c());
   }, [lang]);
   return null;
