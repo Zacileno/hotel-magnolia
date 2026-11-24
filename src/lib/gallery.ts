@@ -1,14 +1,21 @@
 // Redesign 2026-11 (Lenka): photo galleries (original "simonet gallery" plugin markup) and short lists.
 
 /* ---------- galleries ---------- */
-// Galleries with up to MOSAIC_MAX photos become a "mosaic": big and small photos mixed, always filling
+// All galleries (up to MOSAIC_MAX photos) become a "mosaic": big and small photos mixed, always filling
 // a clean rectangle (4 columns on desktop). Each photo gets a size class, chosen so the rows close:
 //   blocks of 5 photos = one big 2×2 photo + four small ones (big photo alternates left / right),
 //   the rest fills the last row: 4 → four small, 3 → wide + 2 small, 2 → two wide, 1 → full width
 //   (and if only 1 is left after a block, that block uses big + wide + 2 small so the rest is 2 wide).
-// These photos use the large image the thumbnail links to (the 269 px thumbnails would be blurry).
-// Bigger galleries (e.g. Fotogalerie, ~35 photos) keep small thumbnails in a plain grid (fast loading).
-const MOSAIC_MAX = 16;
+// No photo is ever left out: 35 photos (Fotogalerie) = exactly 7 blocks of 5.
+// The 269 px thumbnails would be blurry → the photo the thumbnail links to (1024 px) for the big tiles and its
+// 640 px WebP version (scripts/optimize-gallery.mjs) for the small ones; the browser picks, photos load lazily.
+const MOSAIC_MAX = 100;
+
+const TILE_SIZES: Record<string, string> = {
+  "hm-small": "(max-width: 767px) 50vw, 310px",
+  "hm-full": "(max-width: 1280px) 100vw, 1230px",
+};
+const WIDE_SIZES = "(max-width: 767px) 100vw, 620px";
 
 function mosaicClasses(n: number): string[] {
   const out: string[] = [];
@@ -45,11 +52,16 @@ export function galleryLayout(html: string): string {
       if (count === 0 || count > MOSAIC_MAX) return block;
       const classes = mosaicClasses(count);
       let i = 0;
+      let photo = 0;
       const mosaic = inner
         .replace(/class="imgbox ([^"]*)"/g, (_m: string, rest: string) => `class="imgbox ${rest} ${classes[i++] ?? "hm-small"}"`)
         .replace(
           /<a href="([^"]+)"([^>]*)><img src="[^"]+"/g,
-          (_m: string, href: string, rest: string) => `<a href="${href}"${rest}><img loading="lazy" src="${href}"`
+          (_m: string, href: string, rest: string) => {
+            const sizes = TILE_SIZES[classes[photo++] ?? "hm-small"] ?? WIDE_SIZES;
+            const small = href.replace(/\.(jpe?g|png)$/i, "-640w.webp");
+            return `<a href="${href}"${rest}><img loading="lazy" srcset="${small} 640w, ${href} 1024w" sizes="${sizes}" src="${href}"`;
+          }
         );
       return `<div id="${id}" class="simonet_galerie hm-mosaic">${mosaic}</div></div>`;
     }
