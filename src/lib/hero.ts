@@ -32,7 +32,10 @@ export function optimizeHero(html: string): { html: string; hero: string | null 
     const src = original === LOW_CROP ? TALL_CROP : original;
     const extra = ` srcset="${heroSrcSet(src)}" sizes="${HERO_SIZES}"` + (hero ? "" : ' fetchpriority="high"');
     hero ??= src;
-    const sized = tag.replace(`src="${original}"`, `src="${src}"`).replace('height="450"', 'height="750"');
+    const sized = tag
+      .replace(`src="${original}"`, `src="${src}"`)
+      .replace('height="450"', 'height="750"')
+      .replace(/ title="[^"]*"/, ""); // the file name ("_ANK5417f_resize-2") popped up when the mouse was over the photo
     // some of the smaller files are rounded to whole pixels (480×188 instead of 480×187.5), which made the photo
     // up to 1 px taller → keep the exact proportions of the original (same fix as on main, e251015)
     const ratio = / width="(\d+)"/.exec(sized)?.[1] + " / " + / height="(\d+)"/.exec(sized)?.[1];
