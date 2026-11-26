@@ -194,6 +194,10 @@
 - 2026-11-26 **Ceník** (CZ/EN/DE): ceny jako „od … Kč“ / „from“ / „ab“, nadpis bez roku („Ceník pokojů“), i v náhledovém popisu (og).
   Snídaně 300 Kč beze změny. **Německé menu** (`chrome.ts` → `germanMenu`): doplněna položka Restaurant (/de/restaurant-2/, za Hotel
   jako v CZ), Hotel → /de/unterkunft/, Fotogalerie → /de/fotogalerie-2/. Ověřeno 1040–1536 px v jednom řádku. EN menu: Hotel → /en/accommodation/.
+- 2026-11-26 **Sjednocení EN/DE s CZ:** Ubytování EN/DE doplněno o 3 chybějící bloky + 3 fotky jako CZ (texty pokojů převzaty z EN/DE úvodu,
+  cyklisté a svatby/akce přeloženy). CZ Konference: k 6 fotkám přidáno 9 fotek sálu z EN/DE (2024/01, mozaika 15 fotek).
+  DE Cookies: záhlaví tabulky přeloženo (Typ/Name/Zweck/Ablauf). Úvodní stránky CZ/EN/DE mají jiné bloky už z originálu – ponecháno.
+  Kontrola telefonu 360/390/414/768 px: bez přetékání, fotky i písmo v pořádku.
 
 ## 6. Log práce
 
