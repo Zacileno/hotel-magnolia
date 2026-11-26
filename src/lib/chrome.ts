@@ -76,6 +76,8 @@ export function headerFooter(html: string, lang: Lang, path = ""): string {
   let fixed = html.replace(/<a class="email" href="mailto:[^"]*">/g, `<a class="email" href="mailto:${EMAIL}">`);
   if (lang === "cs") return fixed;
   if (lang === "de") fixed = germanMenu(fixed, path);
+  // English menu (Lenka 2026-11-26): "Hotel" pointed to "#", now to the accommodation page like in Czech
+  if (lang === "en") fixed = fixed.replace('<a href="#" class="item">Hotel</a>', '<a href="/en/accommodation/" class="item">Hotel</a>');
 
   const t = TEXTS[lang];
   const withButton = fixed.replace(/(<a style="color: #ffffff;" href=")\/rezervace\/(">)REZERVACE(<\/a>)/g, (_m, a: string, b: string, c: string) => a + t.reservation[0] + b + t.reservation[1] + c);

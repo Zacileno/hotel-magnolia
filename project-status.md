@@ -193,7 +193,7 @@
   časy příjezdu, hotovost, počty pokojů, kapacita sálu, restaurace, DPH 15 %, menu EN/DE (Hotel → #, DE bez Restaurace).
 - 2026-11-26 **Ceník** (CZ/EN/DE): ceny jako „od … Kč“ / „from“ / „ab“, nadpis bez roku („Ceník pokojů“), i v náhledovém popisu (og).
   Snídaně 300 Kč beze změny. **Německé menu** (`chrome.ts` → `germanMenu`): doplněna položka Restaurant (/de/restaurant-2/, za Hotel
-  jako v CZ), Hotel → /de/unterkunft/, Fotogalerie → /de/fotogalerie-2/. Ověřeno 1040–1536 px v jednom řádku. Zbývá: EN Hotel → #.
+  jako v CZ), Hotel → /de/unterkunft/, Fotogalerie → /de/fotogalerie-2/. Ověřeno 1040–1536 px v jednom řádku. EN menu: Hotel → /en/accommodation/.
 
 ## 6. Log práce
 
