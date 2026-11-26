@@ -43,10 +43,39 @@ const TEXTS: Record<Exclude<Lang, "cs">, Texts> = {
   },
 };
 
-export function headerFooter(html: string, lang: Lang): string {
+// German main menu (Lenka 2026-11-26): same items as the Czech one. The original lacked "Restaurant",
+// "Hotel" pointed to "#" and "Fotogalerie" to the Czech gallery.
+const DE_RESTAURANT = "/de/restaurant-2/";
+
+function germanMenu(html: string, path: string): string {
+  const start = html.indexOf('<nav class="main-navigation">');
+  const end = html.indexOf("</nav>", start);
+  if (start < 0 || end < 0) return html;
+  let nav = html
+    .slice(start, end)
+    .replace('<a href="#" class="item">Hotel</a>', '<a href="/de/unterkunft/" class="item">Hotel</a>')
+    .replace('<li class="item"><a href="/fotogalerie/" class="item">Fotogalerie</a></li>', '<li class="item"><a href="/de/fotogalerie-2/" class="item">Fotogalerie</a></li>');
+  if (!nav.includes(`href="${DE_RESTAURANT}" class="item">Restaurant<`) && !nav.includes('class="selecta">Restaurant<')) {
+    const item =
+      path === DE_RESTAURANT
+        ? `<li class="item select lineone"> <a href="${DE_RESTAURANT}" class="selecta">Restaurant</a> </li>`
+        : `<li class="item lineone"><a href="${DE_RESTAURANT}" class="item">Restaurant</a> </li>`;
+    // right after the "Hotel" item (which ends with its sub-menu), as in the Czech menu
+    const hotel = nav.indexOf('class="item">Hotel</a>');
+    const hotelEnd = hotel < 0 ? -1 : nav.indexOf("</ul></li>", hotel);
+    if (hotelEnd >= 0) {
+      const at = hotelEnd + "</ul></li>".length;
+      nav = nav.slice(0, at) + item + nav.slice(at);
+    }
+  }
+  return html.slice(0, start) + nav + html.slice(end);
+}
+
+export function headerFooter(html: string, lang: Lang, path = ""): string {
   // only the header link has this class on an <a>; its href runs over several lines up to the closing quote
-  const fixed = html.replace(/<a class="email" href="mailto:[^"]*">/g, `<a class="email" href="mailto:${EMAIL}">`);
+  let fixed = html.replace(/<a class="email" href="mailto:[^"]*">/g, `<a class="email" href="mailto:${EMAIL}">`);
   if (lang === "cs") return fixed;
+  if (lang === "de") fixed = germanMenu(fixed, path);
 
   const t = TEXTS[lang];
   const withButton = fixed.replace(/(<a style="color: #ffffff;" href=")\/rezervace\/(">)REZERVACE(<\/a>)/g, (_m, a: string, b: string, c: string) => a + t.reservation[0] + b + t.reservation[1] + c);

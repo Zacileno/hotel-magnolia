@@ -191,6 +191,9 @@
   i s odkazy na jazykové verze (německé podmínky nejsou → /vop/). Restaurace: dvě fotky vyšší (270/190 px).
   Audit nesrovnalostí (čeká na hotel/Lenku): pobyty Ferdinanda, sídlo firmy (ARES Krnská 120/1), GA jen UA, cookie lišta, sitemap/robots 404,
   časy příjezdu, hotovost, počty pokojů, kapacita sálu, restaurace, DPH 15 %, menu EN/DE (Hotel → #, DE bez Restaurace).
+- 2026-11-26 **Ceník** (CZ/EN/DE): ceny jako „od … Kč“ / „from“ / „ab“, nadpis bez roku („Ceník pokojů“), i v náhledovém popisu (og).
+  Snídaně 300 Kč beze změny. **Německé menu** (`chrome.ts` → `germanMenu`): doplněna položka Restaurant (/de/restaurant-2/, za Hotel
+  jako v CZ), Hotel → /de/unterkunft/, Fotogalerie → /de/fotogalerie-2/. Ověřeno 1040–1536 px v jednom řádku. Zbývá: EN Hotel → #.
 
 ## 6. Log práce
 
